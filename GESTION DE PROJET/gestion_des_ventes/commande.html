@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Gestion des Commandes</h1>
+
+        <!-- Tableau des commandes -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID Commande</th>
+                    <th>Client</th>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Date Commande</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#001</td>
+                    <td>Jean Dupont</td>
+                    <td>Pain Bâtard</td>
+                    <td>2</td>
+                    <td>2025-01-08</td>
+                    <td>En cours</td>
+                    <td><a href="modifier-commande.html?id=1" class="btn btn-warning">Modifier</a></td>
+                </tr>
+                <tr>
+                    <td>#002</td>
+                    <td>Marie Durand</td>
+                    <td>Croissant au Beurre</td>
+                    <td>3</td>
+                    <td>2025-01-08</td>
+                    <td>Livrée</td>
+                    <td><a href="modifier-commande.html?id=2" class="btn btn-warning">Modifier</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

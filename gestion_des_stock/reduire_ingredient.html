@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réduction du Stock d'Ingrédient</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Réduire le Stock d'Ingrédient</h1>
+
+        <!-- Formulaire pour réduire la quantité d'un ingrédient -->
+        <form action="reduire-ingredient.php" method="POST">
+            <div class="form-group">
+                <label for="ingredient">Ingrédient</label>
+                <input type="text" class="form-control" id="ingredient" name="ingredient" value="Farine" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="reduction">Quantité à Réduire</label>
+                <input type="number" class="form-control" id="reduction" name="reduction" step="0.01" required>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Réduire Stock</button>
+        </form>
+
+        <hr>
+
+        <a href="gestion-stocks-ingredients.html" class="btn btn-secondary">Retour à la gestion des stocks d'ingrédients</a>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

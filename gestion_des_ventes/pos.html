@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Système de Caisse (POS)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Système de Caisse (POS)</h1>
+
+        <!-- Formulaire pour sélectionner un produit et ajouter à la commande -->
+        <form action="processus-paiement.php" method="POST">
+            <div class="form-group">
+                <label for="produit">Sélectionner un Produit</label>
+                <select class="form-control" id="produit" name="produit" required>
+                    <option value="Pain Bâtard">Pain Bâtard</option>
+                    <option value="Croissant au Beurre">Croissant au Beurre</option>
+                    <option value="Baguette Tradition">Baguette Tradition</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantite">Quantité</label>
+                <input type="number" class="form-control" id="quantite" name="quantite" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prix">Prix Unitaire (en €)</label>
+                <input type="number" class="form-control" id="prix" name="prix" step="0.01" value="1.50" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-success">Ajouter à la Commande</button>
+        </form>
+
+        <hr>
+
+        <h3>Panier</h3>
+        <!-- Liste de la commande (exemple statique ici, dynamique avec backend) -->
+        <ul class="list-group">
+            <li class="list-group-item">Pain Bâtard - Quantité: 2 - Sous-total: 3.00 €</li>
+            <li class="list-group-item">Croissant au Beurre - Quantité: 3 - Sous-total: 4.50 €</li>
+        </ul>
+
+        <hr>
+
+        <h3>Total de la commande</h3>
+        <p>Total : 7.50 €</p>
+
+        <button action="facturation.html" class="btn btn-primary">Passer à la Caisse</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Nouveau Produit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Ajouter un Nouveau Produit</h1>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="productName">Nom du Produit</label>
+                <input type="text" class="form-control" id="productName" name="productName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="productDescription">Description</label>
+                <textarea class="form-control" id="productDescription" name="productDescription" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Prix (€)</label>
+                <input type="number" class="form-control" id="productPrice" name="productPrice" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="productCategory">Catégorie</label>
+                <select class="form-control" id="productCategory" name="productCategory">
+                    <option value="pain">Pain</option>
+                    <option value="viennoiserie">Viennoiserie</option>
+                    <option value="patisserie">Pâtisserie</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="productImage">Image du Produit</label>
+                <input type="file" class="form-control-file" id="productImage" name="productImage" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+        </form>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

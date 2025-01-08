@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Pertes et Gâchis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Gestion des Pertes et Gâchis</h1>
+
+        <!-- Formulaire pour enregistrer une perte -->
+        <form action="enregistrer-perte.php" method="POST">
+            <div class="form-group">
+                <label for="product">Produit</label>
+                <select class="form-control" id="product" name="product" required>
+                    <!-- Option dynamique générée via PHP à partir de la base de données -->
+                    <option value="1">Pain Bâtard</option>
+                    <option value="2">Croissant au Beurre</option>
+                    <option value="3">Pain Complet</option>
+                    <!-- Autres produits -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="lossDate">Date de la Perte</label>
+                <input type="date" class="form-control" id="lossDate" name="lossDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantityLost">Quantité Perdue</label>
+                <input type="number" class="form-control" id="quantityLost" name="quantityLost" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reasonLoss">Raison de la Perte</label>
+                <select class="form-control" id="reasonLoss" name="reasonLoss" required>
+                    <option value="Invendu">Invendu</option>
+                    <option value="Défaut de Qualité">Défaut de Qualité</option>
+                    <option value="Gaspillage (non utilisé)">Gaspillage (non utilisé)</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Commentaire</label>
+                <textarea class="form-control" id="comment" name="comment"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Enregistrer la Perte</button>
+        </form>
+
+        <hr>
+
+        <!-- Tableau des Pertes enregistrées -->
+        <h2>Liste des Pertes et Gâchis</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Produit</th>
+                    <th>Date</th>
+                    <th>Quantité Perdue</th>
+                    <th>Raison</th>
+                    <th>Commentaire</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Exemple de perte -->
+                <tr>
+                    <td>1</td>
+                    <td>Pain Bâtard</td>
+                    <td>2025-01-05</td>
+                    <td>3</td>
+                    <td>Invendu</td>
+                    <td>Invendus à la fin de la journée</td>
+                    <td>
+                        <a href="modifier.html" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+                <!-- Autres pertes -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+
+public class Produits {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private String nom;
+    @Column(nullable = false) 
+    private double prixUnitaire = 0;
+    @ManyToOne
+    @JoinColumn(name = "id_categorie")
+    private Categorie categorie;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
+    private List<Productions> productions;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
+    private List<CommandeFille> commande;
+    @OneToOne(mappedBy = "produit", cascade = CascadeType.ALL)
+    private Recettes recette;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit") 
+    private List<SupplementPossible> supplements;
+}
+
+public class MatierePremiere {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private String nom;
+    @ManyToOne
+    @JoinColumn(name = "id_unite") 
+    private Unite unite;
+    @OneToOne(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    private Supplement supplement;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredient", orphanRemoval = true)
+    private List<RecetteComposition> recettes;
+}
+
+public class Fournisseur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private String nom;
+    @Column(nullable = false) 
+    private String achronyme;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fournisseur")
+    private List<CommandeFille> commande;
+}
+
+public class Approvisionnement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private LocalDateTime dateAppro;
+    @Column(nullable = false) 
+    @Enumerated(EnumType.STRING)
+    private Status etat = Status.WAIT;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
+    private List<ApprovisionnementFille> detail;
+}
+
+public class ApprovisionnementFille {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "id_matiere")
+    private MatierePremiere matiere;
+    @ManyToOne
+    @JoinColumn(name = "id_fournisseur")
+    private Fournisseur fournisseur;
+    @ManyToOne
+    @JoinColumn(name = "id_approvisionnement")
+    private Approvisionnement parent;
+    @Column(nullable = false) 
+    private double quantite = 0;
+}
+
+public class Categorie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private String nom;
+    @Column(nullable = false) 
+    private Produits produit;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie") 
+    private List<Produits> produits;
+}
+
+public class Commande {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private LocalDateTime dateCommande;
+    @Column(nullable = false)
+    private Status etatCommande = Status.WAIT;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande")
+    private List<CommandeFille> detail;
+}
+
+public class CommandeFille {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private int quantite = 1;
+    @ManyToOne
+    @JoinColumn(name = "id_commande")
+    private Commande commande;
+    @ManyToOne
+    @JoinColumn(name = "id_produit")
+    private Produits produit;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande", orphanRemoval = true)
+    private List<SupplementCommande> supplements;
+}
+
+public class Productions {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private LocalDateTime dateProduction;
+    @Column(nullable = false) 
+    private double quantite = 0;
+    @ManyToOne
+    @JoinColumn(name = "id_produit") 
+    private Produits produit;
+    @Enumerated(EnumType.STRING)
+    private Status etat = Status.WAIT;
+}
+
+public class Recettes {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_produit") 
+    private Produits produit;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recettes") 
+    private List<RecetteComposition> composition;
+}
+
+public class RecetteComposition {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable=false)
+    private double quantite = 0;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_recette") 
+    private Recettes recettes;
+    @ManyToOne
+    @JoinColumn(name = "id_ingredient") 
+    private MatierePremiere ingredients;
+}
+
+public class Supplement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false) 
+    private double prix = 0;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_ingredient") 
+    private MatierePremiere ingredient;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplement", orphanRemoval = true)
+    private List<SupplementPossible> composition; 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplement", orphanRemoval = true)
+    private List<SupplementCommande> commande; 
+}
+
+public class SupplementPossible {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_supplement") 
+    private Supplement supplement;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_produit") 
+    private Produits produit;
+}
+
+public class Unite {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String nom;
+    @Column(nullable = false)
+    private String symbole;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unite")
+    private List<MatierePremiere> matierePremiere;
+}
+
+public class Commande {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private LocalDateTime dateCommande;
+    @Column(nullable = false)
+    private Status etatCommande = Status.WAIT;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande")
+    private List<CommandeFille> detail;
+    @ManyToOne
+    @JoinColumn(name = "id_caisse")
+    private Caisse caisse;
+}
+
+public class SupplementCommande {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "id_commande") 
+    private CommandeFille commande;
+    @ManyToOne
+    @JoinColumn(name = "id_supplement") 
+    private Supplement supplement;
+}
+
+public enum Status {
+    WAIT,
+    PAYER,
+    VALIDATE,
+    ANNULLER
+}
+

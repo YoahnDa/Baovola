@@ -1,4 +1,5 @@
 package com.baovola.baovola.models;
+import java.io.Serializable;
 import java.util.List;
 import jakarta.validation.constraints.*;
 import jakarta.persistence.*;
@@ -7,7 +8,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "recettes")
-public class Recettes {
+public class Recettes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

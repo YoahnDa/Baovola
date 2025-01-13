@@ -21,4 +21,7 @@ public class Approvisionnement implements Serializable {
     private Status etat = Status.WAIT;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent", orphanRemoval = true)
     private List<ApprovisionnementFille> detail;
+    @ManyToOne
+    @JoinColumn(name = "id_fournisseur")
+    private Fournisseur fournisseur;
 }

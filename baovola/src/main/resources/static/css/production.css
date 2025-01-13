@@ -1,0 +1,147 @@
+/* Style de la carte (formulaire) */
+.card {
+    border-radius: 12px; /* Arrondi des coins de la carte */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* Style de l'en-tête de la carte */
+.card-header {
+    background-color: #343a40; /* Couleur sombre de l'en-tête */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 15px 20px; /* Ajouter un peu d'espace autour du titre */
+    margin-bottom: 15px; /* Espacement sous le titre */
+    border-top-left-radius: 12px; /* Arrondi du coin supérieur gauche */
+    border-top-right-radius: 12px; /* Arrondi du coin supérieur droit */
+}
+
+/* Espacement pour d'autres titres (optionnel, selon les besoins) */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 20px; /* Ajouter un espacement au-dessus des titres */
+    margin-bottom: 10px; /* Ajouter un espacement en dessous des titres */
+}
+
+/* Style du corps de la carte */
+.card-body {
+    padding: 10px 15px; /* Réduire l'espace interne */
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    /* Optionnel : définir une hauteur fixe si nécessaire */
+    max-height: 300px;  /* Exemple de hauteur maximale */
+    overflow-y: auto;  /* Pour activer le défilement si le contenu dépasse */
+}
+
+/* Style des champs de formulaire */
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #343a40; /* Couleur sombre pour les labels */
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border-radius: 8px; /* Arrondi des coins des champs de formulaire */
+    border: 1px solid #ddd;
+    font-size: 14px;
+    padding: 10px;
+    background-color: #fff;
+    color: #495057;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style des boutons */
+.btn {
+    font-weight: bold;
+    border-radius: 8px; /* Arrondi des coins des boutons */
+    padding: 10px 15px;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: 1px solid #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border: 1px solid #1e7e34;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border: 1px solid #545b62;
+}
+
+/* Espacement des boutons */
+button[type="button"],
+button[type="reset"] {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+/* Amélioration de l'apparence des formulaires pour mobiles */
+@media (max-width: 767px) {
+    .card-body {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+}
+
+/* Style de la table des productions */
+#productionTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style des cellules de la table */
+#productionTable th, #productionTable td {
+    padding: 15px; /* Ajouter de l'espace autour du contenu */
+    text-align: left; /* Alignement du texte à gauche */
+    border-bottom: 1px solid #ddd; /* Ajouter une bordure sous chaque cellule */
+}
+
+/* Style de l'en-tête de la table */
+#productionTable th {
+    background-color: #343a40; /* Couleur sombre pour l'en-tête */
+    color: white; /* Texte en blanc */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Style des lignes de la table */
+#productionTable tr:nth-child(even) {
+    background-color: #f2f2f2; /* Lignes paires avec une couleur de fond gris clair */
+}
+
+#productionTable tr:hover {
+    background-color: #e0e0e0; /* Changement de couleur au survol d'une ligne */
+}
+
+/* Style des boutons dans la table */
+#productionTable .btn {
+    padding: 5px 10px; /* Taille des boutons */
+    font-size: 12px; /* Taille de la police dans les boutons */
+}

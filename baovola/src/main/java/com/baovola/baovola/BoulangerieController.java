@@ -18,4 +18,28 @@ public class BoulangerieController {
         model.addAttribute("body", "ingredient");
         return "layout";  // Retourne le template layout.html
     }
+
+    @GetMapping("/produit")
+    public String produit(Model model) {
+        model.addAttribute("body", "produit");
+        return "layout";  // Retourne le template layout.html
+    }
+
+    @GetMapping("/production")
+    public String production(Model model) {
+        model.addAttribute("body", "production");
+        return "layout";  // Retourne le template layout.html
+    }
+
+    @GetMapping("/vente")
+    public String vente(Model model) {
+        model.addAttribute("body", "vente");
+        return "layout";  // Retourne le template layout.html
+    }
+
+    @GetMapping("/facture")
+    public String facture(Model model) {
+        model.addAttribute("body", "facture");
+        return "layout";  // Retourne le template layout.html
+    }
 }

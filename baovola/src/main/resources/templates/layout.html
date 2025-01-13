@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boulangerie - Layout</title>
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img th:src="@{/img/logo-social.png}" alt="Logo">
+            <h1>Boulangerie</h1>
+        </div>
+
+        <h3 class="menu-title">Navigation Principale</h3>
+        <div class="menu-item">
+            <a th:href="@{/dashboard}"><i class="fas fa-home"></i> Dashboard</a>
+        </div>
+
+        <h3 class="menu-title">Gestion de la Production</h3>
+        <div class="menu-item">
+            <a th:href="@{/production}"><i class="fas fa-cogs"></i> Production</a>
+        </div>
+
+        <h3 class="menu-title">Ventes et Stocks</h3>
+        <div class="menu-item">
+            <a th:href="@{/vente}"><i class="fas fa-chart-line"></i> Ventes</a>
+        </div>
+        <div class="menu-item">
+            <a th:href="@{/stock}"><i class="fas fa-box"></i> Stocks</a>
+        </div>
+
+        <h3 class="menu-title">Autres</h3>
+        <div class="menu-item">
+            <a th:href="@{/deconnexion}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div th:replace="~{${body} :: content}"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< Updated upstream
 		<version>3.3.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
+=======
+		<version>3.0.0</version> <!-- Utilisation d'une version stable de Spring Boot -->
+		<relativePath /> <!-- lookup parent from repository -->
+>>>>>>> Stashed changes
 	</parent>
 	<groupId>com.baovola</groupId>
 	<artifactId>baovola</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>baovola</name>
+<<<<<<< Updated upstream
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -26,6 +33,9 @@
 		<tag/>
 		<url/>
 	</scm>
+=======
+	<description>Baovola project for Spring Boot</description> <!-- Fermeture de la balise description -->
+>>>>>>> Stashed changes
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -77,12 +87,25 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.18.26</version> <!-- Définition explicite de la version de Lombok -->
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- JSP (si nécessaire) -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -91,11 +114,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>1.18.26</version> <!-- Version définie explicitement dans le plugin -->
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
@@ -114,5 +139,8 @@
 			</plugin>
 		</plugins>
 	</build>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 </project>

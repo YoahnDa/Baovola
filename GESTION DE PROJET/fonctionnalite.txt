@@ -25,3 +25,8 @@
 - Gestion des stocks de produits finis: Suivi des produits finis disponibles à la vente, avec alertes en cas de rupture de stock.
 - Réapprovisionnement automatique: Système pour générer des commandes de réapprovisionnement basé sur les niveaux de stock et les prévisions de vente. 
 
+ORDRE DE PRIORITE :
+*Gestion d'ingredients
+*Gestion des Produits
+*Gestion de production
+*Gestion de ventes

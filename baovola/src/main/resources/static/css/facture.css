@@ -1,0 +1,150 @@
+/* Style de la carte (formulaire) */
+.card {
+    border-radius: 12px; /* Arrondi des coins de la carte */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* Style de l'en-tête de la carte */
+.card-header {
+    background-color: #343a40; /* Couleur sombre de l'en-tête */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding: 15px 20px; /* Ajouter un peu d'espace autour du titre */
+    margin-bottom: 15px; /* Espacement sous le titre */
+    border-top-left-radius: 12px; /* Arrondi du coin supérieur gauche */
+    border-top-right-radius: 12px; /* Arrondi du coin supérieur droit */
+}
+
+/* Style du corps de la carte */
+.card-body {
+    padding: 20px 30px; /* Espacement interne de la carte */
+    background-color: #f8f9fa;
+}
+
+/* Style des tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Style des liens */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Boutons */
+button {
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+button.btn-secondary {
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+    color: white;
+}
+
+button.btn-secondary:hover {
+    background-color: #5a6268;
+    border: 1px solid #545b62;
+}
+
+button.btn-info {
+    background-color: #17a2b8;
+    border: 1px solid #17a2b8;
+    color: white;
+}
+
+button.btn-info:hover {
+    background-color: #138496;
+    border: 1px solid #117a8b;
+}
+
+/* Style de la page de facture */
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #343a40;
+}
+
+button[type="button"] {
+    margin-top: 15px;
+}
+
+/* Marges générales */
+.container {
+    margin-top: 50px;
+}
+
+/* Style spécifique à la page facture */
+#orderDetails {
+    font-size: 14px;
+    color: #495057;
+}
+
+#orderDetails td, #orderDetails th {
+    vertical-align: middle;
+}
+
+#orderDetails td {
+    text-align: center;
+}
+
+#orderDetails th, #orderDetails td {
+    padding: 10px;
+}
+
+/* Appliquer du style aux boutons et titres dans la facture */
+.card-header h5 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+/* Ajout d'un peu de padding et de style aux lignes du tableau pour mieux séparer les produits */
+#orderDetails tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+#orderDetails tr:hover {
+    background-color: #f1f1f1;
+}

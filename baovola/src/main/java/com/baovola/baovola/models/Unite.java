@@ -2,12 +2,14 @@ package com.baovola.baovola.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "unite")
-public class Unite {
+public class Unite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

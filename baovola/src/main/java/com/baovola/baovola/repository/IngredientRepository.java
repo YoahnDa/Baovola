@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IngredientRepository extends JpaRepository<MatierePremiere,Long> {
-    @Query("SELECT u FROM matierePremiere  u WHERE u.nom LIKE %:keyword%")
+    @Query("SELECT u FROM MatierePremiere  u WHERE u.nom LIKE %:keyword%")
     List<MatierePremiere> findByNomContaining(@Param("keyword") String keyword);
+    @Query("SELECT m FROM MatierePremiere m WHERE m.unite.id IN :uniteIds AND (:nom IS NULL OR LOWER(m.nom) LIKE LOWER(CONCAT('%', :nom, '%')))")
+    List<MatierePremiere> findByUniteIdsAndName(@Param("uniteIds") List<Long> uniteIds, @Param("nom") String nom);
     List<MatierePremiere> findBySupplementIsNotNull();
     List<MatierePremiere> findByIdIn(List<Long> ids);
 }

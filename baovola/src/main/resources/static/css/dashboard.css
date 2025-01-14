@@ -1,0 +1,101 @@
+/* Structure principale */
+.main-content {
+    margin-left: 300px;
+    padding: 30px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Layout des graphiques */
+.flex-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cards-wrapper {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.charts-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style des conteneurs de graphiques */
+.chart-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles pour les graphiques linéaires */
+.cards-wrapper .chart-container {
+    height: 400px;
+}
+
+/* Styles pour les graphiques circulaires */
+.charts-wrapper .chart-container {
+    height: 300px;
+}
+
+/* Titre des graphiques */
+.chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Affichage des pourcentages */
+.percentage {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .flex-container {
+        flex-direction: column;
+    }
+    
+    .cards-wrapper,
+    .charts-wrapper {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .chart-container {
+        padding: 15px;
+        min-height: 250px;
+    }
+
+    .chart-title {
+        font-size: 16px;
+    }
+}

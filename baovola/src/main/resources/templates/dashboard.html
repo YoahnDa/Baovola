@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Boulangerie</title>
+
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <!-- Conteneur flexible pour les Cartes et les Graphiques -->
+            <div class="flex-container">
+                <!-- Section des Cartes (convertie en graphiques) -->
+                <div class="cards-wrapper">
+                    <!-- Graphique de Production -->
+                    <div class="chart-container">
+                        <div class="chart-title">Production du Jour</div>
+                        <canvas id="productionChart"></canvas>
+                        <div class="percentage" id="productionPercentage"></div> <!-- Affichage du pourcentage -->
+                    </div>
+
+                    <!-- Graphique des Ventes -->
+                    <div class="chart-container">
+                        <div class="chart-title">Ventes Totales</div>
+                        <canvas id="ventesChart"></canvas>
+                        <div class="percentage" id="ventesPercentage"></div> <!-- Affichage du pourcentage -->
+                    </div>
+
+                    <!-- Graphique des Stocks -->
+                    <div class="chart-container">
+                        <div class="chart-title">Stocks d'Ingrédients</div>
+                        <canvas id="stocksChart"></canvas>
+                        <div class="percentage" id="stocksPercentage"></div> <!-- Affichage du pourcentage -->
+                    </div>
+                </div>
+
+                <!-- Section des Graphiques (convertie à partir des cartes) -->
+                <div class="charts-wrapper">
+                    <!-- Graphique circulaire de la Production -->
+                    <div class="chart-container">
+                        <div class="chart-title">Production du Jour</div>
+                        <canvas id="productionPieChart"></canvas>
+                        <div class="percentage" id="productionPiePercentage"></div> <!-- Affichage du pourcentage -->
+                    </div>
+
+                    <!-- Graphique circulaire des Ventes -->
+                    <div class="chart-container">
+                        <div class="chart-title">Ventes Totales</div>
+                        <canvas id="ventesPieChart"></canvas>
+                        <div class="percentage" id="ventesPiePercentage"></div> <!-- Affichage du pourcentage -->
+                    </div>
+
+                    <!-- Graphique circulaire des Stocks -->
+                    <div class="chart-container">
+                        <div class="chart-title">Stocks d'Ingrédients</div>
+                        <canvas id="stocksPieChart"></canvas>
+                        <div class="percentage" id="stocksPiePercentage"></div> <!-- Affichage du pourcentage -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- Bibliothèques JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script th:src="@{/js/dashboard.js}"></script>
+    
+</body>
+
+</html>

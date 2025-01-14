@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BaovolaApplication<baovola>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.baovola.baovola.BaovolaApplication",
+            "projectName": "baovola",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

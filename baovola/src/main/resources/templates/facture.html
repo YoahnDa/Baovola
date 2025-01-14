@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la Commande</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/facture.css}">
+</head>
+
+<body>
+    <div th:fragment="content">
+        <header class="bg-dark text-white text-center py-3">
+            <h1>Détails de la Commande</h1>
+        </header>
+    
+        <main class="container mt-5">
+            <!-- Détails de la facture -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5>Détails de la Commande</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Caisse</th>
+                                <th>Numéro Facture</th>
+                                <th>Produit + Suppléments</th>
+                                <th>Quantité</th>
+                                <th>Prix Unitaire</th>
+                                <th>Prix Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderDetails">
+                            <!-- Les détails des commandes seront insérés ici -->
+                        </tbody>
+                    </table>
+                    <button class="btn btn-secondary mt-3" id="backButton">Retour</button>
+                </div>
+            </div>
+        </main>
+    
+        <script>
+            // Ajoutez un événement sur le bouton "Retour"
+            document.getElementById('backButton').addEventListener('click', function () {
+                // Redirige vers vente.html
+                window.location.href = 'vente.html';
+            });
+        </script>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="@{/js/facture.js}"></script>
+        
+    </div>
+</body>
+
+</html>

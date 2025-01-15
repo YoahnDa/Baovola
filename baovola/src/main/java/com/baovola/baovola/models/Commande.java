@@ -16,6 +16,7 @@ public class Commande implements Serializable {
     private Long id;
     @Column(nullable = false)
     private LocalDateTime dateCommande;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status etatCommande = Status.WAIT;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande", orphanRemoval = true)

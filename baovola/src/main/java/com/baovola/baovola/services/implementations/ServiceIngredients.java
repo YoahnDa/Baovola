@@ -1,6 +1,5 @@
 package com.baovola.baovola.services.implementations;
 
-import java.util.stream.Collectors;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class ServiceIngredients implements IServiceIngredients {
         List<MatierePremiere> liste = ingredientRepository.findByUniteIdsAndName(uniteIds,nom);
         return liste.stream()
                           .map(ingredientMapper::toDto)
-                          .collect(Collectors.toList());
+                          .toList();
     }
 
     public List<MatierePremiere> getAllIngredient() {

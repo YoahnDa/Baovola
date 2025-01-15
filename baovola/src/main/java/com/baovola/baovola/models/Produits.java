@@ -29,4 +29,6 @@ public class Produits implements Serializable {
     private Recettes recette;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit", orphanRemoval = true) 
     private List<SupplementPossible> supplements;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit", orphanRemoval = true) 
+    private List<ProduitMois> preference;
 }

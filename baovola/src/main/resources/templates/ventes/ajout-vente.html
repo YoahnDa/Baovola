@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Boulangerie</title>
+    <link rel="stylesheet" th:href="@{/css/}">
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <!-- Formulaire d'ajout de vente -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5>Ajouter une Vente</h5>
+    </div>
+    <div class="card-body">
+        <form id="saleForm">
+            <div class="form-group">
+                <label for="category">Catégorie</label>
+                <select class="form-control" id="category">
+                    <option value="Catégorie 1">Catégorie 1</option>
+                    <option value="Catégorie 2">Catégorie 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="product">Produit</label>
+                <select class="form-control" id="product">
+                    <option value="Produit 1">Produit 1</option>
+                    <option value="Produit 2">Produit 2</option>
+                    <option value="Produit 3">Produit 3</option>
+                    <option value="Produit 4">Produit 4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantité</label>
+                <input type="number" class="form-control" id="quantity" placeholder="Quantité" min="1">
+            </div>
+            <div class="form-group">
+                <label>Suppléments possibles</label><br>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="supplement1" value="Supp1">
+                    <label class="form-check-label" for="supplement1">Supp 1</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="supplement2" value="Supp2">
+                    <label class="form-check-label" for="supplement2">Supp 2</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="supplement3" value="Supp3">
+                    <label class="form-check-label" for="supplement3">Supp 3</label>
+                </div>
+                <div class="form-group">
+                    <label for="searchCashRegister">Caisse</label>
+                    <select class="form-control" id="searchCashRegister">
+                        <option value="">Tous</option>
+                        <option value="Caisse 1">Caisse 1</option>
+                        <option value="Caisse 2">Caisse 2</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" id="addSale">Ajouter</button>
+            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+        </form>
+    </div>
+</div>
+
+        </main>
+    </div>
+
+    <script th:src="@{/js/}"></script>
+
+</body>
+
+</html>

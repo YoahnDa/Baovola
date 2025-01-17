@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Boulangerie</title>
+    
+    <th:block th:each="cssLink : ${cssLinks}">
+        <link rel="stylesheet" th:href="@{${cssLink}}" />
+    </th:block>
+
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5>Ajouter ou Modifier un Ingrédient</h5>
+                </div>
+                <div class="card-body">
+                    <form id="ingredientForm">
+                        <div class="form-group">
+                            <label for="ingredientName">Nom de l'Ingrédient</label>
+                            <input type="text" class="form-control" id="ingredientName" placeholder="Entrez le nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantité</label>
+                            <input type="number" class="form-control" id="quantity" placeholder="Quantité disponible">
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Unité</label>
+                            <input type="text" class="form-control" id="unit" placeholder="Ex. kg, L">
+                        </div>
+                        <button type="button" class="btn btn-success" id="addIngredient">Ajouter</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <th:block th:each="jsLink : ${jsLinks}">
+        <script th:src="@{${jsLink}}"></script>
+    </th:block>
+
+</body>
+
+</html>

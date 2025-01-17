@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Boulangerie</title>
+    <link rel="stylesheet" th:href="@{/css/}">
+    <link rel="stylesheet" th:href="@{/css/ingredient.css}">
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5>Ajouter ou Modifier un Produit</h5>
+                </div>
+                <div class="card-body">
+                    <form id="productForm">
+                        <div class="form-group">
+                            <label for="productName">Nom du Produit</label>
+                            <input type="text" class="form-control" id="productName"
+                                placeholder="Entrez le nom du produit">
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Prix</label>
+                            <input type="number" class="form-control" id="productPrice" placeholder="Prix du produit">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Catégorie</label>
+                            <select class="form-control" id="category">
+                                <option value="">Choisir une catégorie</option>
+                                <option value="patisserie">Pâtisserie</option>
+                                <option value="boulangerie">Boulangerie</option>
+                                <option value="viennoiserie">Viennoiserie</option>
+                                <option value="boisson">Boisson</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-success" id="addProduct">Ajouter</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script th:src="@{/js/}"></script>
+
+</body>
+
+</html>

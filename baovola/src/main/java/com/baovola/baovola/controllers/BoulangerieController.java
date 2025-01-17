@@ -125,43 +125,182 @@ public class BoulangerieController {
         return "layout";
     }
 
-    @GetMapping("/produit")
-    public String produit(Model model) {
-        model.addAttribute("body", "produit");
-        model.addAttribute("cssLink", "lien/vers/cssLink");
-        model.addAttribute("jsLink", "lien/vers/jsLink");
-        return "layout"; // Retourne le template layout.html
-    }
 
     @GetMapping("/production")
     public String production(Model model) {
         model.addAttribute("body", "production");
-        model.addAttribute("cssLink", "lien/vers/cssLink");
-        model.addAttribute("jsLink", "lien/vers/jsLink");
-        return "layout"; // Retourne le template layout.html
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/production.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/production.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+
+        return "layout";
     }
 
-    @GetMapping("/vente")
-    public String vente(Model model) {
-        model.addAttribute("body", "vente");
-        model.addAttribute("cssLink", "lien/vers/cssLink");
-        model.addAttribute("jsLink", "lien/vers/jsLink");
-        return "layout"; // Retourne le template layout.html
+    @GetMapping("/ajout-production")
+    public String addproduction(Model model) {
+        model.addAttribute("body", "ajout-production");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/production.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/production.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+
+        return "layout";
     }
 
-    @GetMapping("/facture")
-    public String facture(Model model) {
-        model.addAttribute("body", "facture");
-        model.addAttribute("cssLink", "lien/vers/cssLink");
-        model.addAttribute("jsLink", "lien/vers/jsLink");
-        return "layout"; // Retourne le template layout.html
+    @GetMapping("/produit")
+    public String produit(Model model) {
+        model.addAttribute("body", "produit");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/produit.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/produit.js",
+                "/js/popper.min.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+        
+        return "layout"; 
+    }
+
+    @GetMapping("/ajout-produit")
+    public String addproduit(Model model) {
+        model.addAttribute("body", "ajout-produit");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/produit.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/produit.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+        
+        return "layout"; 
     }
 
     @GetMapping("/recette")
     public String recette(Model model) {
         model.addAttribute("body", "recette");
-        model.addAttribute("cssLink", "lien/vers/cssLink");
-        model.addAttribute("jsLink", "lien/vers/jsLink");
-        return "layout"; // Retourne le template layout.html
+        List<String> cssLinks = Arrays.asList(
+                "/css/recette.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/recette.js",
+                "/js/popper.min.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+        
+        return "layout"; 
+    }
+
+    @GetMapping("/ajout-recette")
+    public String addrecette(Model model) {
+        model.addAttribute("body", "ajout-recette");
+        List<String> cssLinks = Arrays.asList(
+                "/css/recette.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/recette.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+        
+        return "layout"; 
+    }
+
+    @GetMapping("/vente")
+    public String vente(Model model) {
+        model.addAttribute("body", "vente");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/vente.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/vente.js",
+                "/js/popper.min.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+       
+        return "layout"; 
+    }
+
+    @GetMapping("/ajout-vente")
+    public String vente(Model model) {
+        model.addAttribute("body", "ajout-vente");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/vente.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/vente.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+       
+        return "layout"; 
+    }
+
+    @GetMapping("/facture")
+    public String facture(Model model) {
+        model.addAttribute("body", "facture");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/facture.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/facture.js",
+                "/js/popper.min.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+       
+        return "layout"; 
+    }
+
+    @GetMapping("/liste-client")
+    public String listeclient(Model model) {
+        model.addAttribute("body", "liste-client");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/client.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/client.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+       
+        return "layout"; 
+    }
+
+    @GetMapping("/ajout-client")
+    public String addclient(Model model) {
+        model.addAttribute("body", "ajout-client");
+
+        List<String> cssLinks = Arrays.asList(
+                "/css/client.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/client.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+       
+        return "layout"; 
     }
 }

@@ -3,33 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Accueil - Boulangerie</title>
-
+    <title>Ajouter un Client - Boulangerie</title>
     <th:block th:each="cssLink : ${cssLinks}">
         <link rel="stylesheet" th:href="@{${cssLink}}" />
     </th:block>
-
 </head>
 
 <body>
     <div th:fragment="content">
         <main class="container mt-5">
-            <!-- Formulaire de gestion de la production -->
+            <!-- Formulaire d'ajout d'un client -->
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
-                    <h5>Ajouter ou Modifier la Production</h5>
+                    <h5>Ajouter Client</h5>
                 </div>
                 <div class="card-body">
-                    <form id="productionForm">
+                    <form id="clientForm">
                         <div class="form-group">
-                            <label for="productName">Nom du Produit</label>
-                            <input type="text" class="form-control" id="productName" placeholder="Nom du produit">
+                            <label for="clientName">Nom du Client</label>
+                            <input type="text" class="form-control" id="clientName" placeholder="Nom du client" required>
                         </div>
-                        <div class="form-group">
-                            <label for="quantity">Quantité de production</label>
-                            <input type="number" class="form-control" id="quantity" placeholder="Quantité de production">
-                        </div>
-                        <button type="button" class="btn btn-success" id="addProduction">Ajouter</button>
+
+                        <button type="button" class="btn btn-success" id="addClient">Ajouter Client</button>
                         <button type="reset" class="btn btn-secondary">Réinitialiser</button>
                     </form>
                 </div>

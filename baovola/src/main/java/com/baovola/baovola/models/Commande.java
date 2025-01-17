@@ -19,9 +19,14 @@ public class Commande implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status etatCommande = Status.WAIT;
+    @Column(nullable = false)
+    private double montantPayer = 0;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande", orphanRemoval = true)
     private List<CommandeFille> detail;
     @ManyToOne
     @JoinColumn(name = "id_caisse")
     private Caisse caisse;
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
 }

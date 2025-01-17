@@ -24,7 +24,7 @@ public class IngredientController {
     public String listIngredients(Model model) {
         List<IngredientDto> ingredient = serviceIngredients.getAllIngredient().stream()
         .map(ingredientMapper::toDto)
-        .collect(Collectors.toList());
+        .toList();
         model.addAttribute("ingredients",ingredient);
         return "ingredients/list";
     }

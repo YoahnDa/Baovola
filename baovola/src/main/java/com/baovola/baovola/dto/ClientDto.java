@@ -1,10 +1,12 @@
 package com.baovola.baovola.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
-public class IngredientDto {
+public class ClientDto {
     private Long id;
     private String nom;
-    private UniteDto unite;
+    private List<CommandeDto> commande;
 }

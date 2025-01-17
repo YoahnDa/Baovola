@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Fournisseurs</title>
+    <th:block th:each="cssLink : ${cssLinks}">
+        <link rel="stylesheet" th:href="@{${cssLink}}" />
+    </th:block>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <header class="bg-dark text-white text-center py-3">
+            <h1>Gestion des Fournisseurs</h1>
+        </header>
+
+        <main class="container mt-5">
+            <!-- Recherche et filtre des fournisseurs -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5>Recherche des Fournisseurs</h5>
+                </div>
+                <div class="card-body">
+                    <form id="searchSupplierForm">
+                        <div class="form-group">
+                            <label for="searchSupplierName">Nom du Fournisseur</label>
+                            <input type="text" class="form-control" id="searchSupplierName"
+                                placeholder="Nom du fournisseur">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchSupplierEmail">Email</label>
+                            <input type="email" class="form-control" id="searchSupplierEmail"
+                                placeholder="Email du fournisseur">
+                        </div>
+                        <button type="button" class="btn btn-info" id="searchSupplierBtn">Rechercher</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Liste des fournisseurs -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5>Liste des Fournisseurs</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="supplierTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Adresse</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les fournisseurs seront insérés ici dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <th:block th:each="jsLink : ${jsLinks}">
+            <script th:src="@{${jsLink}}"></script>
+        </th:block>
+
+    </div>
+</body>
+
+</html>

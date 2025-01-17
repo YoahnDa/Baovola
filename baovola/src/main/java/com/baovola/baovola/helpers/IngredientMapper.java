@@ -1,9 +1,7 @@
 package com.baovola.baovola.helpers;
 
-import com.baovola.baovola.models.Unite;
 import com.baovola.baovola.models.MatierePremiere;
 import com.baovola.baovola.dto.IngredientDto;
-import com.baovola.baovola.dto.UniteDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

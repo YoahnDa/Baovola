@@ -1,4 +1,4 @@
-package com.baovola.baovola;
+package com.baovola.baovola.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -14,8 +14,8 @@ body {
 .error-container {
     background-color: white;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     width: 90%;
     text-align: center;
@@ -27,7 +27,8 @@ body {
     color: #e74c3c;
     margin-bottom: 20px;
     font-size: 2em;
-    font-weight: 600;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 /* Style des paragraphes */
@@ -40,7 +41,7 @@ body {
 /* Style du message d'erreur */
 .error-container strong {
     color: #333;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .error-container span {
@@ -56,8 +57,8 @@ body {
     background-color: #3498db;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: 500;
+    border-radius: 8px;
+    font-weight: bold;
     transition: all 0.3s ease;
 }
 

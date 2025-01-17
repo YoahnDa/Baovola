@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Recettes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/recette.css}">
+</head>
+
+<body>
+    <div th:fragment="content">
+        <header class="bg-dark text-white text-center py-3">
+            <h1>Gestion des Recettes</h1>
+        </header>
+
+        <main class="container mt-5">
+            
+
+            <!-- Liste des recettes -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5>Liste des Recettes</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" id="recipeTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom de la Recette</th>
+                                <th>Ingrédient</th>
+                                <th>Quantité</th>
+                                <th>Unité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les recettes seront insérées ici dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script th:src="@{/js/recette.js}"></script>
+
+    </div>
+</body>
+
+</html>

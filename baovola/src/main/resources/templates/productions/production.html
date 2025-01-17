@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de la Production</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/production.css}">
+</head>
+
+<body>
+    <div th:fragment="content">
+        <!-- Header -->
+        <header class="bg-dark text-white text-center py-3">
+            <h1>Gestion de la Production</h1>
+        </header>
+
+        <main class="container mt-5">
+            
+            <!-- Recherche multicritère et filtre -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5>Recherche et Filtres</h5>
+                </div>
+                <div class="card-body">
+                    <form id="searchForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="searchProduct">Nom du Produit</label>
+                                <input type="text" class="form-control" id="searchProduct"
+                                    placeholder="Rechercher par produit">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="searchIngredient">Ingrédient</label>
+                                <input type="text" class="form-control" id="searchIngredient"
+                                    placeholder="Rechercher par ingrédient">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-info" id="searchBtn">Rechercher</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Liste des productions -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5>Liste des Productions</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover" id="productionTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Nom du Produit</th>
+                                <th>Ingrédient</th>
+                                <th>Quantité d'Ingrédient</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les productions seront insérées dynamiquement ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script th:src="@{/js/production.js}"></script>
+    </div>
+
+</body>
+
+</html>

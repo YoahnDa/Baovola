@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Boulangerie</title>
+    <link rel="stylesheet" th:href="@{/css/}">
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <!-- Formulaire d'ajout/édition d'une recette -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5>Ajouter / Modifier Recette</h5>
+    </div>
+    <div class="card-body">
+        <form id="recipeForm">
+            <div class="form-group">
+                <label for="recipeName">Nom de la Recette</label>
+                <input type="text" class="form-control" id="recipeName" placeholder="Nom de la recette">
+            </div>
+            <div class="form-group">
+                <label for="ingredientName">Ingrédient</label>
+                <input type="text" class="form-control" id="ingredientName"
+                    placeholder="Nom de l'ingrédient">
+            </div>
+            <div class="form-group">
+                <label for="ingredientQuantity">Quantité</label>
+                <input type="number" class="form-control" id="ingredientQuantity"
+                    placeholder="Quantité de l'ingrédient">
+            </div>
+            <div class="form-group">
+                <label for="ingredientUnit">Unité</label>
+                <input type="text" class="form-control" id="ingredientUnit"
+                    placeholder="Unité de l'ingrédient (ex: kg, litre)">
+            </div>
+            <button type="button" class="btn btn-success" id="addRecipe">Ajouter Recette</button>
+            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+        </form>
+    </div>
+</div> 
+        </main>
+    </div>
+
+    <script th:src="@{/js/}"></script>
+
+</body>
+
+</html>

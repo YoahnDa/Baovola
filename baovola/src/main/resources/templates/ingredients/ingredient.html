@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Boulangerie</title>
+    <th:block th:each="cssLink : ${cssLinks}">
+        <link rel="stylesheet" th:href="@{${cssLink}}" />
+    </th:block>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <!-- Recherche multicritère -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5>Recherche Multicritère</h5>
+                </div>
+                <div class="card-body">
+                    <form id="searchForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="searchName">Nom de l'Ingrédient</label>
+                                <input type="text" class="form-control" id="searchName"
+                                    placeholder="Rechercher par nom">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="searchUnit">Unité</label>
+                                <input type="text" class="form-control" id="searchUnit"
+                                    placeholder="Rechercher par unité">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-info" id="searchBtn">Rechercher</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Liste des ingrédients -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5>Liste des Ingrédients</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover" id="ingredientsTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Nom</th>
+                                <th>Quantité</th>
+                                <th>Unité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les ingrédients seront insérés dynamiquement ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <th:block th:each="jsLink : ${jsLinks}">
+        <script th:src="@{${jsLink}}"></script>
+    </th:block>
+
+</body>
+
+</html>

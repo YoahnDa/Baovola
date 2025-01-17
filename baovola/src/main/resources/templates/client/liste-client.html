@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Clients - Boulangerie</title>
+    <th:block th:each="cssLink : ${cssLinks}">
+        <link rel="stylesheet" th:href="@{${cssLink}}" />
+    </th:block>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <main class="container mt-5">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5>Liste des Clients</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Table pour afficher la liste des clients -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nom du Client</th>
+                                <th scope="col">Nombre d'Achats</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Boucle Thymeleaf pour afficher les clients -->
+                            <th:block th:each="client : ${clients}">
+                                <tr>
+                                    <td th:text="${client.id}"></td>
+                                    <td th:text="${client.name}"></td>
+                                    <td th:text="${client.purchaseCount}"></td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <th:block th:each="jsLink : ${jsLinks}">
+        <script th:src="@{${jsLink}}"></script>
+    </th:block>
+
+</body>
+
+</html>

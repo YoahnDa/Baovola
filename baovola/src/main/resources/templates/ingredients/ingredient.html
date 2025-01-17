@@ -27,10 +27,25 @@
                                     placeholder="Rechercher par nom">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="searchUnit">Unité</label>
-                                <input type="text" class="form-control" id="searchUnit"
-                                    placeholder="Rechercher par unité">
+                                <label for="searchUnit">Unité</label><br>
+
+                                <!-- Checkbox pour "kg" -->
+                                <label>
+                                    <input type="checkbox" name="searchUnit" value="kg" /> kg
+                                </label><br>
+
+                                <!-- Checkbox pour "L" -->
+                                <label>
+                                    <input type="checkbox" name="searchUnit" value="L" /> L
+                                </label><br>
+
+                                <!-- Checkbox pour "m" -->
+                                <label>
+                                    <input type="checkbox" name="searchUnit" value="m" /> m
+                                </label><br>
+
                             </div>
+
                         </div>
                         <button type="button" class="btn btn-info" id="searchBtn">Rechercher</button>
                         <button type="reset" class="btn btn-secondary">Réinitialiser</button>

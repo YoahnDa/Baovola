@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion de la Production</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/production.css}">
+
+    <th:block th:each="cssLink : ${cssLinks}">
+        <link rel="stylesheet" th:href="@{${cssLink}}" />
+    </th:block>
+
 </head>
 
 <body>
@@ -17,7 +20,7 @@
         </header>
 
         <main class="container mt-5">
-            
+
             <!-- Recherche multicritère et filtre -->
             <div class="card mb-4">
                 <div class="card-header bg-info text-white">
@@ -28,19 +31,27 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="searchProduct">Nom du Produit</label>
-                                <input type="text" class="form-control" id="searchProduct"
-                                    placeholder="Rechercher par produit">
+                                <input type="text" class="form-control" id="searchProduct" placeholder="Rechercher par produit">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="searchIngredient">Ingrédient</label>
-                                <input type="text" class="form-control" id="searchIngredient"
-                                    placeholder="Rechercher par ingrédient">
+                                <input type="text" class="form-control" id="searchIngredient" placeholder="Rechercher par ingrédient">
                             </div>
                         </div>
+                
+                        <!-- Ajout du champ "Date de production" -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="productionDate">Date de Production</label>
+                                <input type="date" class="form-control" id="productionDate" name="productionDate">
+                            </div>
+                        </div>
+                
                         <button type="button" class="btn btn-info" id="searchBtn">Rechercher</button>
                         <button type="reset" class="btn btn-secondary">Réinitialiser</button>
                     </form>
                 </div>
+                
             </div>
 
             <!-- Liste des productions -->
@@ -54,7 +65,8 @@
                             <tr>
                                 <th>Nom du Produit</th>
                                 <th>Ingrédient</th>
-                                <th>Quantité d'Ingrédient</th>
+                                <th>Quantité de production</th>
+                                <th>Date</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -66,9 +78,10 @@
             </div>
         </main>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script th:src="@{/js/production.js}"></script>
+        <th:block th:each="jsLink : ${jsLinks}">
+            <script th:src="@{${jsLink}}"></script>
+        </th:block>
+
     </div>
 
 </body>

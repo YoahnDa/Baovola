@@ -12,7 +12,7 @@ public class BoulangerieController {
 
     @GetMapping("/dashboard")
     public String accueil(Model model) {
-        model.addAttribute("body", "dashboard");
+        model.addAttribute("body", "accueil/dashboard");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/dashboard.css");

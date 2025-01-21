@@ -18,6 +18,9 @@ public class ServiceIngredients implements IServiceIngredients {
     @Autowired
     private IngredientMapper ingredientMapper;
 
+    public boolean existeByNom(String nom){
+        return ingredientRepository.existsByNomIgnoreCase(nom);
+    }
     public void deleteIngredient(Long id) {
         ingredientRepository.deleteById(id);
     }
@@ -32,10 +35,10 @@ public class ServiceIngredients implements IServiceIngredients {
     }
 
     public List<IngredientDto> searchIngredient(List<Long> uniteIds, String nom) {
-        List<MatierePremiere> liste = ingredientRepository.findByUniteIdsAndName(uniteIds,nom);
+        List<MatierePremiere> liste = ingredientRepository.findByUniteIdsAndName(uniteIds, nom);
         return liste.stream()
-                          .map(ingredientMapper::toDto)
-                          .toList();
+                .map(ingredientMapper::toDto)
+                .toList();
     }
 
     public List<MatierePremiere> getAllIngredient() {

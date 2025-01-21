@@ -10,6 +10,8 @@ import com.baovola.baovola.dto.IngredientDto;
 import org.springframework.web.bind.annotation.*;
 import com.baovola.baovola.services.implementations.ServiceIngredients;
 import com.baovola.baovola.helpers.IngredientMapper;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/ingredients")
@@ -23,9 +25,9 @@ public class IngredientController {
     @GetMapping
     public String listIngredients(Model model) {
         List<IngredientDto> ingredient = serviceIngredients.getAllIngredient().stream()
-        .map(ingredientMapper::toDto)
-        .toList();
-        model.addAttribute("ingredients",ingredient);
+                .map(ingredientMapper::toDto)
+                .toList();
+        model.addAttribute("ingredients", ingredient);
         return "ingredients/list";
     }
 }

@@ -15,6 +15,8 @@ public interface IngredientRepository extends JpaRepository<MatierePremiere,Long
     List<MatierePremiere> findByNomContaining(@Param("keyword") String keyword);
     @Query("SELECT m FROM MatierePremiere m WHERE m.unite.id IN :uniteIds AND (:nom IS NULL OR LOWER(m.nom) LIKE LOWER(CONCAT('%', :nom, '%')))")
     List<MatierePremiere> findByUniteIdsAndName(@Param("uniteIds") List<Long> uniteIds, @Param("nom") String nom);
+    @Query("SELECT CASE WHEN COUNT(i) > 0 THEN TRUE ELSE FALSE END FROM Ingredient i WHERE LOWER(i.nom) = LOWER(:nom)")
+    boolean existsByNomIgnoreCase(@Param("nom")String nom);
     List<MatierePremiere> findBySupplementIsNotNull();
     List<MatierePremiere> findByIdIn(List<Long> ids);
 }

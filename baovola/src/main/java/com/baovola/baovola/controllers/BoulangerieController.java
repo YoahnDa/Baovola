@@ -3,16 +3,22 @@ package com.baovola.baovola.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.baovola.baovola.services.implementations.ServiceUnite;
+
 @Controller
 public class BoulangerieController {
 
+    @Autowired
+    private ServiceUnite uniteService;
+
     @GetMapping("/dashboard")
     public String accueil(Model model) {
-        model.addAttribute("body", "dashboard");
+        model.addAttribute("body", "accueil/dashboard");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/dashboard.css");
@@ -62,7 +68,7 @@ public class BoulangerieController {
 
     @GetMapping("/fournisseur")
     public String fournisseur(Model model) {
-        model.addAttribute("body", "fournisseur");
+        model.addAttribute("body", "fournisseur/fournisseur");
         List<String> cssLinks = Arrays.asList(
                 "/css/fournisseur.css");
 
@@ -78,7 +84,7 @@ public class BoulangerieController {
 
     @GetMapping("/ajout-fournisseur")
     public String addfournisseur(Model model) {
-        model.addAttribute("body", "ajout-fournisseur");
+        model.addAttribute("body", "fournisseur/ajout-fournisseur");
         List<String> cssLinks = Arrays.asList(
                 "/css/fournisseur.css");
 
@@ -94,7 +100,7 @@ public class BoulangerieController {
 
     @GetMapping("/ingredient")
     public String ingredient(Model model) {
-        model.addAttribute("body", "ingredient");
+        model.addAttribute("body", "ingredients/ingredient");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/ingredient.css");
@@ -111,8 +117,9 @@ public class BoulangerieController {
 
     @GetMapping("/ajout-ingredient")
     public String addingredient(Model model) {
-        model.addAttribute("body", "ajout-ingredient");
-
+        model.addAttribute("body", "ingredients/ajout-ingredient");
+        model.addAttribute("unite", uniteService.getAllUnite());
+        
         List<String> cssLinks = Arrays.asList(
                 "/css/ingredient.css");
 
@@ -128,7 +135,7 @@ public class BoulangerieController {
 
     @GetMapping("/production")
     public String production(Model model) {
-        model.addAttribute("body", "production");
+        model.addAttribute("body", "productions/production");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/production.css");
@@ -144,7 +151,7 @@ public class BoulangerieController {
 
     @GetMapping("/ajout-production")
     public String addproduction(Model model) {
-        model.addAttribute("body", "ajout-production");
+        model.addAttribute("body", "productions/ajout-production");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/production.css");
@@ -160,7 +167,7 @@ public class BoulangerieController {
 
     @GetMapping("/produit")
     public String produit(Model model) {
-        model.addAttribute("body", "produit");
+        model.addAttribute("body", "produits/produit");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/produit.css");
@@ -177,7 +184,7 @@ public class BoulangerieController {
 
     @GetMapping("/ajout-produit")
     public String addproduit(Model model) {
-        model.addAttribute("body", "ajout-produit");
+        model.addAttribute("body", "produits/ajout-produit");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/produit.css");
@@ -193,7 +200,7 @@ public class BoulangerieController {
 
     @GetMapping("/recette")
     public String recette(Model model) {
-        model.addAttribute("body", "recette");
+        model.addAttribute("body", "recettes/recette");
         List<String> cssLinks = Arrays.asList(
                 "/css/recette.css");
 
@@ -209,7 +216,7 @@ public class BoulangerieController {
 
     @GetMapping("/ajout-recette")
     public String addrecette(Model model) {
-        model.addAttribute("body", "ajout-recette");
+        model.addAttribute("body", "recettes/ajout-recette");
         List<String> cssLinks = Arrays.asList(
                 "/css/recette.css");
 
@@ -224,7 +231,7 @@ public class BoulangerieController {
 
     @GetMapping("/vente")
     public String vente(Model model) {
-        model.addAttribute("body", "vente");
+        model.addAttribute("body", "ventes/vente");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/vente.css");
@@ -240,8 +247,8 @@ public class BoulangerieController {
     }
 
     @GetMapping("/ajout-vente")
-    public String addvente(Model model) {
-        model.addAttribute("body", "ajout-vente");
+    public String ajoutvente(Model model) {
+        model.addAttribute("body", "ventes/ajout-vente");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/vente.css");
@@ -257,7 +264,7 @@ public class BoulangerieController {
 
     @GetMapping("/facture")
     public String facture(Model model) {
-        model.addAttribute("body", "facture");
+        model.addAttribute("body", "ventes/facture");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/facture.css");
@@ -274,7 +281,7 @@ public class BoulangerieController {
 
     @GetMapping("/liste-client")
     public String listeclient(Model model) {
-        model.addAttribute("body", "liste-client");
+        model.addAttribute("body", "client/liste-client");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/client.css");
@@ -290,7 +297,7 @@ public class BoulangerieController {
 
     @GetMapping("/ajout-client")
     public String addclient(Model model) {
-        model.addAttribute("body", "ajout-client");
+        model.addAttribute("body", "client/ajout-client");
 
         List<String> cssLinks = Arrays.asList(
                 "/css/client.css");

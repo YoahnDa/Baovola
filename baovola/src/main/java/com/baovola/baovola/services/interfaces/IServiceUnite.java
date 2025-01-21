@@ -12,4 +12,5 @@ public interface IServiceUnite {
     public Unite findById(Long id);
     public List<UniteDto> searchUnite(String nom);
     public List<UniteDto> getAllUnite();
+    public List<UniteDto> findNotIn(Long id);
 }

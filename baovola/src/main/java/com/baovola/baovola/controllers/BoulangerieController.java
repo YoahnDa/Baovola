@@ -7,7 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.baovola.baovola.dto.IngredientDto;
+import com.baovola.baovola.dto.UniteDto;
+import com.baovola.baovola.helpers.IngredientMapper;
+import com.baovola.baovola.services.implementations.ServiceIngredients;
 import com.baovola.baovola.services.implementations.ServiceUnite;
 
 @Controller
@@ -15,6 +20,10 @@ public class BoulangerieController {
 
     @Autowired
     private ServiceUnite uniteService;
+    @Autowired
+    private ServiceIngredients ingredientService;
+    @Autowired
+    private IngredientMapper ingredientMapper;
 
     @GetMapping("/dashboard")
     public String accueil(Model model) {
@@ -101,7 +110,11 @@ public class BoulangerieController {
     @GetMapping("/ingredient")
     public String ingredient(Model model) {
         model.addAttribute("body", "ingredients/ingredient");
-
+        model.addAttribute("unite", uniteService.getAllUnite());
+        List<IngredientDto> ingredients = ingredientService.getAllIngredient().stream()
+                .map(ingredientMapper::toDto)
+                .toList();
+        model.addAttribute("ingredient", ingredients);
         List<String> cssLinks = Arrays.asList(
                 "/css/ingredient.css");
 
@@ -120,6 +133,25 @@ public class BoulangerieController {
         model.addAttribute("body", "ingredients/ajout-ingredient");
         model.addAttribute("unite", uniteService.getAllUnite());
         
+        List<String> cssLinks = Arrays.asList(
+                "/css/ingredient.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/ingredient.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+
+        return "layout";
+    }
+
+    @GetMapping("/modif-ingredient")
+    public String modifIngredient(@RequestParam ("id") Long id, Model model) {
+        model.addAttribute("body", "ingredients/ajout-ingredient");
+        IngredientDto ingredient = ingredientMapper.toDto(ingredientService.findById(id));
+        List<UniteDto> unite = uniteService.findNotIn(id);
+        model.addAttribute("unite", unite);
+        model.addAttribute("ingredient", ingredient);
         List<String> cssLinks = Arrays.asList(
                 "/css/ingredient.css");
 

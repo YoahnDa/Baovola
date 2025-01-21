@@ -1,5 +1,6 @@
 package com.baovola.baovola.repository;
 
+import com.baovola.baovola.models.MatierePremiere;
 import com.baovola.baovola.models.Unite;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +17,6 @@ public interface UniteRepository extends JpaRepository<Unite,Long> {
     boolean existsBySymbole(@Param("symbole") String symbole);
     @Query("SELECT u FROM Unite u WHERE LOWER(u.nom) LIKE LOWER(CONCAT('%', :nom, '%'))")
     List<Unite> searchByNom(@Param("nom") String nom);
+    @Query("SELECT i FROM Unite i WHERE i.id != :id")
+    List<Unite> findUnitesExcludingId(Long id);
 }

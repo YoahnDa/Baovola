@@ -1,6 +1,8 @@
 package com.baovola.baovola.services.implementations;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baovola.baovola.repository.IngredientRepository;
@@ -35,10 +37,17 @@ public class ServiceIngredients implements IServiceIngredients {
     }
 
     public List<IngredientDto> searchIngredient(List<Long> uniteIds, String nom) {
-        List<MatierePremiere> liste = ingredientRepository.findByUniteIdsAndName(uniteIds, nom);
-        return liste.stream()
+        List<MatierePremiere> liste = ingredientRepository.findByNomIgnoreCaseContaining(nom);
+        // Si uniteIds est vide ou null, ne pas appliquer de filtre supplémentaire
+        if (uniteIds == null || uniteIds.isEmpty()) {
+            return liste.stream()
                 .map(ingredientMapper::toDto)
                 .toList();
+        }
+        return liste.stream()
+            .filter(ingredient -> uniteIds.contains(ingredient.getUnite().getId()))
+            .map(ingredientMapper::toDto)
+            .toList();
     }
 
     public List<MatierePremiere> getAllIngredient() {

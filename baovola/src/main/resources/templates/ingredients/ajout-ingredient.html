@@ -16,25 +16,28 @@
         <main class="container mt-5">
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
-                    <h5>Ajouter ou Modifier un Ingrédient</h5>
+                    <h5 th:text="${ingredient == null ? 'Ajouter un ingredient' : 'Modifier ingredient'}">Ajouter ou Modifier un Ingrédient</h5>
                 </div>
                 <div class="card-body">
-                    <form id="ingredientForm" method="POST">
+                    <form th:id="${ingredient == null ? 'ingredientForm' : 'updateForm'}" method="POST">
+                        <input th:if="${ingredient != null}" type="number" th:value="${ingredient.id}" style="display: none;" name="idIngredient" required>
                         <div class="form-group">
                             <label for="ingredientName">Nom de l'Ingrédient</label>
-                            <input type="text" class="form-control" id="ingredientName" placeholder="Entrez le nom" name="nom" required>
+                            <input th:value="${ingredient == null ? '' : ingredient.nom}" type="text" class="form-control" id="ingredientName" placeholder="Entrez le nom" name="nom" required>
                         </div>
+                        <br>
                         <div class="form-group">
-                            <label for="unit">Unité</label><br>
-                            <div th:each="list : ${unite}">
-                                <label>
-                                    <input type="radio" th:value="${list.id}" name="unit" required/> 
-                                    <span th:text="${list.nom}">Nom de l'unité</span>
-                                </label>
-                            </div>
+                            <label for="unit">Unité</label>
+                            <select name="unit" id="unit" required style="display: inline-block;">
+                                <option th:value="${ingredient.unite.id}" th:if="${ingredient != null}" th:text="${ingredient.unite.nom}" selected>Sélectionnez une unité</option>
+                                <div th:each="list : ${unite}">
+                                    <option th:value="${list.id}" th:text="${list.nom}">Nom de l'unité</option>
+                                </div>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-success" id="addIngredient">Ajouter</button>
-                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                        <br>
+                        <button type="submit" class="btn btn-success" id="addIngredient" th:text="${ingredient == null ? 'Ajouter' : 'Modifier'}">Ajouter</button>
+                        <button th:if="${ingredient == null}" type="reset" class="btn btn-secondary">Réinitialiser</button>
                     </form>
                 </div>
             </div>

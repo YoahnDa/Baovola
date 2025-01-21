@@ -3,12 +3,18 @@ package com.baovola.baovola.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.baovola.baovola.services.implementations.ServiceUnite;
+
 @Controller
 public class BoulangerieController {
+
+    @Autowired
+    private ServiceUnite uniteService;
 
     @GetMapping("/dashboard")
     public String accueil(Model model) {
@@ -112,7 +118,8 @@ public class BoulangerieController {
     @GetMapping("/ajout-ingredient")
     public String addingredient(Model model) {
         model.addAttribute("body", "ingredients/ajout-ingredient");
-
+        model.addAttribute("unite", uniteService.getAllUnite());
+        
         List<String> cssLinks = Arrays.asList(
                 "/css/ingredient.css");
 

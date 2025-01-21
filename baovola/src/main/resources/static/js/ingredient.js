@@ -1,19 +1,49 @@
 // Initialisation des ingrédients
 let ingredients = [];
 
-// Ajouter un ingrédient
-document.getElementById('addIngredient').addEventListener('click', () => {
-    const name = document.getElementById('ingredientName').value;
-    const quantity = document.getElementById('quantity').value;
-    const unit = document.getElementById('unit').value;
+const formulaire = document.getElementById('ingredientForm');
 
-    if (name && quantity && unit) {
-        ingredients.push({ name, quantity, unit });
-        refreshTable();
-        document.getElementById('ingredientForm').reset();
-    } else {
-        alert('Veuillez remplir tous les champs.');
+// Ajouter un ingrédient
+formulaire.addEventListener('submit', (event) => {
+    event.preventDefault();
+    var xhr; 
+    try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+    catch (e) 
+    {
+        try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+        catch (e2) 
+        {
+           try {  xhr = new XMLHttpRequest();  }
+           catch (e3) {  xhr = false;   }
+         }
     }
+    // Liez l'objet FormData et l'élément form
+    var formData = new FormData(formulaire);
+
+    var ingredientData = {};
+    formData.forEach((value, key) => {
+        ingredientData[key] = value;
+    });
+    xhr.onreadystatechange  = function() 
+    { 
+       if(xhr.readyState  == 4){
+            if(xhr.status  == 201) {
+                formulaire.reset();
+                alert("Nouveau ingrédient créer.");
+            } else if(xhr.status == 409 ) {
+                alert("Erreur : L'ingrédient existe déjà.");
+            }else {
+                alert("Error code " + xhr.status);
+            }
+		}
+    }; 
+
+    // Configurez la requête
+    xhr.open("POST", "api/ingredients/ajout-ingredient",true);
+    // Définir le type de contenu comme JSON
+    xhr.setRequestHeader("Content-Type", "application/json");
+    // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
+    xhr.send(JSON.stringify(ingredientData));
 });
 
 // Recherche multicritère (par nom et unité seulement)

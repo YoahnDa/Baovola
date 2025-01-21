@@ -7,9 +7,16 @@ import com.baovola.baovola.models.MatierePremiere;
 
 public interface IServiceIngredients {
     public void deleteIngredient(Long id);
+
     public void updateIngredient(MatierePremiere ingredient);
+
     public MatierePremiere findById(Long id);
+
     public List<IngredientDto> searchIngredient(List<Long> uniteIds, String nom);
+
     public List<MatierePremiere> getAllIngredient();
+
     public void createIngredients(MatierePremiere ingredient);
+
+    public boolean existeByNom(String nom);
 }

@@ -240,7 +240,7 @@ public class BoulangerieController {
     }
 
     @GetMapping("/ajout-vente")
-    public String vente(Model model) {
+    public String addvente(Model model) {
         model.addAttribute("body", "ajout-vente");
 
         List<String> cssLinks = Arrays.asList(

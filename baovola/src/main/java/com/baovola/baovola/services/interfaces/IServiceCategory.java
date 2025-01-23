@@ -6,10 +6,12 @@ import com.baovola.baovola.dto.CategorieDto;
 import com.baovola.baovola.models.Categorie;
 
 public interface IServiceCategory {
-    public void deleteUnite(Long id);
-    public void updateUnite(Categorie unite);
-    public void createUnite(Categorie unite);
+    public void deleteCategorie(Long id);
+    public void updateCategorie(Categorie unite);
+    public void createCategorie(Categorie unite);
     public Categorie findById(Long id);
-    public List<CategorieDto> searchUnite(String nom);
-    public List<CategorieDto> getAllUnite();
+    public List<CategorieDto> searchCategorie(String nom);
+    public List<CategorieDto> getAllCategorie();
+    public boolean existeCategorie(String nom);
+    public boolean existeCategorieById(Long id);
 }

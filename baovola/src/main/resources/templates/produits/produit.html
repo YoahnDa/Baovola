@@ -28,27 +28,30 @@
                 <div class="card-body">
                     <form id="searchForm">
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="category">Catégorie</label>
-                                <select class="form-control" id="category">
-                                    <option value="">Choisir une catégorie</option>
-                                    <option value="patisserie">Pâtisserie</option>
-                                    <option value="boulangerie">Boulangerie</option>
-                                    <option value="viennoiserie">Viennoiserie</option>
-                                    <option value="boisson">Boisson</option>
-                                </select>
+                            <div class="form-group col-md-4" style="display: inline-block;">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" placeholder="Nom du produit" name="nom">
                             </div>
-
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4" style="display: inline-block;">
                                 <label for="minPrice">Prix Min</label>
-                                <input type="number" class="form-control" id="minPrice" placeholder="Prix minimum">
+                                <input type="number" class="form-control" id="minPrice" placeholder="Prix minimum" name="prixMin">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4" style="display: inline-block;">
                                 <label for="maxPrice">Prix Max</label>
-                                <input type="number" class="form-control" id="maxPrice" placeholder="Prix maximum">
+                                <input type="number" class="form-control" id="maxPrice" placeholder="Prix maximum" name="prixMax">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Categorie</label>
+                                <br>
+                                <div th:each="cat : ${categorie}" style="display: inline-block;">
+                                    <label>
+                                        <input type="checkbox" th:value="${cat.id}" name="idCategorie"/> 
+                                        <span th:text="${cat.nom}">Nom de la categorie</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-info" id="searchBtn">Rechercher</button>
+                        <button type="submit" class="btn btn-info" id="searchBtn">Rechercher</button>
                         <button type="reset" class="btn btn-secondary">Réinitialiser</button>
                     </form>
                 </div>
@@ -71,33 +74,21 @@
                         </thead>
                         <tbody>
                             <!-- Les produits seront insérés dynamiquement ici -->
+                            <tr th:each="produits : ${produit}" th:id="'produit-' + ${produits.id}">
+                                <td th:text="${produits.nom}"></td>
+                                <td th:text="${produits.prixUnitaire}">0</td>
+                                <td th:text="${produits.categorie.nom}"></td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" th:onclick="'editProduct(' + ${produits.id} + ')'" >Modifier</button>
+                                    <button class="btn btn-danger btn-sm" th:onclick="'deleteProduct(' + ${produits.id} + ')'" >Supprimer</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
             <!-- Section des Produits Conseils du Mois -->
-            <div class="card mb-4">
-                <div class="card-header bg-success text-white">
-                    <h5>Produits Conseils du Mois</h5>
-                </div>
-                <div class="card-body">
-                    <p>Découvrez les produits que nous vous recommandons ce mois-ci. Ces produits ont été sélectionnés pour leur qualité et leur popularité !</p>
-                    <table class="table table-striped table-hover" id="productsTable">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Nom</th>
-                                <th>Prix</th>
-                                <th>Catégorie</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Les produits conseils du mois seront insérés dynamiquement ici -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </main>
 
         <th:block th:each="jsLink : ${jsLinks}">

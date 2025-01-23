@@ -4,15 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.baovola.baovola.dto.IngredientDto;
+import com.baovola.baovola.dto.ProduitDto;
 import com.baovola.baovola.dto.UniteDto;
 import com.baovola.baovola.helpers.IngredientMapper;
+import com.baovola.baovola.helpers.ProduitGetMapper;
+import com.baovola.baovola.services.implementations.ServiceCategory;
 import com.baovola.baovola.services.implementations.ServiceIngredients;
+import com.baovola.baovola.services.implementations.ServiceProduit;
 import com.baovola.baovola.services.implementations.ServiceUnite;
 
 @Controller
@@ -24,6 +29,12 @@ public class BoulangerieController {
     private ServiceIngredients ingredientService;
     @Autowired
     private IngredientMapper ingredientMapper;
+    @Autowired
+    private ServiceCategory serviceCategory;
+    @Autowired
+    private ServiceProduit serviceProduit;
+    @Autowired
+    private ProduitGetMapper produitMapper;
 
     @GetMapping("/dashboard")
     public String accueil(Model model) {
@@ -200,7 +211,8 @@ public class BoulangerieController {
     @GetMapping("/produit")
     public String produit(Model model) {
         model.addAttribute("body", "produits/produit");
-
+        model.addAttribute("categorie", serviceCategory.getAllCategorie());
+        model.addAttribute("produit", serviceProduit.getAllProduit());
         List<String> cssLinks = Arrays.asList(
                 "/css/produit.css");
 
@@ -217,7 +229,24 @@ public class BoulangerieController {
     @GetMapping("/ajout-produit")
     public String addproduit(Model model) {
         model.addAttribute("body", "produits/ajout-produit");
+        model.addAttribute("categorie", serviceCategory.getAllCategorie());
+        List<String> cssLinks = Arrays.asList(
+                "/css/produit.css");
 
+        List<String> jsLinks = Arrays.asList(
+                "/js/produit.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+        
+        return "layout"; 
+    }
+
+    @GetMapping("/modif-produit")
+    public String modifProduit(@RequestParam(required = true) Long id, Model model) {
+        model.addAttribute("body", "produits/ajout-produit");
+        model.addAttribute("produit",produitMapper.toDto(serviceProduit.findById(id)));
+        model.addAttribute("categorie", serviceCategory.getAllCategorie());
         List<String> cssLinks = Arrays.asList(
                 "/css/produit.css");
 

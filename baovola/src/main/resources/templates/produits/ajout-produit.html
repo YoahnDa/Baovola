@@ -16,31 +16,32 @@
         <main class="container mt-5">
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
-                    <h5>Ajouter ou Modifier un Produit</h5>
+                    <h5  th:text="${produit == null ? 'Ajouter un produit' : 'Modifier produit'}">Ajouter ou Modifier un Produit</h5>
                 </div>
                 <div class="card-body">
-                    <form id="productForm">
+                    <form th:id="${produit == null ? 'productForm' : 'productUpdate'}">
+                        <input th:if="${produit != null}" type="number" th:value="${produit.id}" style="display: none;" name="idProduit" required>
                         <div class="form-group">
                             <label for="productName">Nom du Produit</label>
-                            <input type="text" class="form-control" id="productName"
-                                placeholder="Entrez le nom du produit">
+                            <input th:value="${produit == null ? '' : produit.nom}" type="text" name="nom" class="form-control" id="productName"
+                                placeholder="Entrez le nom du produit" required>
                         </div>
                         <div class="form-group">
                             <label for="productPrice">Prix</label>
-                            <input type="number" class="form-control" id="productPrice" placeholder="Prix du produit">
+                            <input th:value="${produit == null ? '' : produit.prixUnitaire}" type="number" class="form-control" id="productPrice" name="prix" placeholder="Prix du produit" min="1" required>
                         </div>
                         <div class="form-group">
                             <label for="category">Catégorie</label>
-                            <select class="form-control" id="category">
-                                <option value="">Choisir une catégorie</option>
-                                <option value="patisserie">Pâtisserie</option>
-                                <option value="boulangerie">Boulangerie</option>
-                                <option value="viennoiserie">Viennoiserie</option>
-                                <option value="boisson">Boisson</option>
+                            <select class="form-control" id="idCategorie" name="idCategorie">
+                                <option th:value="${produit.categorie.id}" th:if="${produit != null}" th:text="${produit.categorie.nom}" selected>Sélectionnez une unité</option>
+                                <div th:each="cat : ${categorie}">
+                                    <option th:if="${produit != null && produit.categorie.id != cat.id}" th:value="${cat.id}" th:text="${cat.nom}"></option>
+                                    <option th:if="${produit == null}" th:value="${cat.id}" th:text="${cat.nom}">Nom du categorie</option>
+                                </div>
                             </select>
                         </div>
-                        <button type="button" class="btn btn-success" id="addProduct">Ajouter</button>
-                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                        <button type="submit" class="btn btn-success" id="addProduct" th:text="${produit == null ? 'Ajouter' : 'Modifier'}">Ajouter</button>
+                        <button type="reset" th:if="${produit == null}" class="btn btn-secondary">Réinitialiser</button>
                     </form>
                 </div>
             </div>

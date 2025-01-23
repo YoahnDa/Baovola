@@ -13,4 +13,5 @@ import com.baovola.baovola.models.Categorie;
 public interface CategoryRepository extends JpaRepository<Categorie, Long> {
     @Query("SELECT u FROM Categorie u WHERE LOWER(u.nom) LIKE LOWER(CONCAT('%', :nom, '%'))")
     List<Categorie> searchByNom(@Param("nom") String nom);
+    boolean existsByNomIgnoreCase(@Param("nom") String nom);
 }

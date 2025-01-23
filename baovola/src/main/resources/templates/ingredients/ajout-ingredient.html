@@ -31,7 +31,8 @@
                             <select name="unit" id="unit" required style="display: inline-block;">
                                 <option th:value="${ingredient.unite.id}" th:if="${ingredient != null}" th:text="${ingredient.unite.nom}" selected>Sélectionnez une unité</option>
                                 <div th:each="list : ${unite}">
-                                    <option th:value="${list.id}" th:text="${list.nom}">Nom de l'unité</option>
+                                    <option th:if="${ingredient != null && ingredient.unite.id != list.id}" th:value="${list.id}" th:text="${list.nom}"></option>
+                                    <option th:if="${ingredient == null}" th:value="${list.id}" th:text="${list.nom}">Nom de l'unité</option>
                                 </div>
                             </select>
                         </div>

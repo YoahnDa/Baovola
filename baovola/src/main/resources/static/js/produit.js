@@ -27,7 +27,23 @@ function searchByAjax(formulaire){
          }
     }
 
-    xhr.onreadystatechange  = function() 
+    const prixMin = formulaire.getElementById("prixMin").value;
+    const prixMax = formulaire.getElementById("prixMax").value;
+
+    if(prixMin && isNaN(prixMin)){
+        alert("Le prix minimum doit être valide.");
+        return;
+    }else if(prixMax && isNaN(prixMax)){
+        alert("Le prix maximum doit être valide.");
+        return;
+    }
+
+    if(prixMin && prixMax && parseFloat(prixMin) >= parseFloat(prixMax)){
+        alert("Le prix minimum doit être inférieur au prix maximum.");
+        return;
+    }
+
+    xhr.onreadystatechange  = function()    
     { 
        if(xhr.readyState  == 4){
             if(xhr.status  == 200) {
@@ -136,15 +152,15 @@ function loadData(data) {
         header.textContent = 'Pas de correspondance';
         tbody.appendChild(header);
     }else{
-        data.forEach((product) => {
+        data.forEach((produits) => {
             const row = `
-                <tr id='produit-${product.id}>
-                    <td>${product.nom}</td>
-                    <td>${product.prixUnitaire}</td>
-                    <td>${product.categorie.nom}</td>
+                <tr id="produit-${produits.id}">
+                    <td>${produits.nom}</td>
+                    <td>${produits.prixUnitaire}</td>
+                    <td>${produits.categorie.nom}</td>
                     <td>
-                        <button class="btn btn-warning btn-sm" onclick="editProduct(${product.id})">Modifier</button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Supprimer</button>
+                        <button class="btn btn-warning btn-sm" onclick="'editProduct(${produits.id})" >Modifier</button>
+                        <button class="btn btn-danger btn-sm"  onclick="'deleteProduct(${produits.id})" >Supprimer</button>
                     </td>
                 </tr>
             `;

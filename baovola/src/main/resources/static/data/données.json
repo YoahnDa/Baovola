@@ -1,0 +1,274 @@
+
+// Unité
+[
+    {
+        "nom": "Litre",
+        "symbole": "L"
+    },
+    {
+        "nom": "Millilitre",
+        "symbole": "mL"
+    },
+    {
+        "nom": "Kilogramme",
+        "symbole": "kg"
+    },
+    {
+        "nom": "Gramme",
+        "symbole": "g"
+    },
+    {
+        "nom": "Centigramme",
+        "symbole": "cg"
+    },
+    {
+        "nom": "Décigramme",
+        "symbole": "dg"
+    },
+    {
+        "nom": "Tonne",
+        "symbole": "t"
+    },
+    {
+        "nom": "Mètre",
+        "symbole": "m"
+    },
+    {
+        "nom": "Centimètre",
+        "symbole": "cm"
+    },
+    {
+        "nom": "Millimètre",
+        "symbole": "mm"
+    },
+    {
+        "nom": "Gramme par litre",
+        "symbole": "g/L"
+    },
+    {
+        "nom": "Cuillère à soupe",
+        "symbole": "c.à.s"
+    },
+    {
+        "nom": "Cuillère à café",
+        "symbole": "c.à.c"
+    },
+    {
+        "nom": "Pinch",
+        "symbole": "pinch"
+    },
+    {
+        "nom": "Pinte",
+        "symbole": "pt"
+    },
+    {
+        "nom": "Once",
+        "symbole": "oz"
+    },
+    {
+        "nom": "Livre",
+        "symbole": "lb"
+    },
+    {
+        "nom": "Quart",
+        "symbole": "qt"
+    },
+    {
+        "nom": "Gallons",
+        "symbole": "gal"
+    },
+    {
+        "nom": "Hectolitre",
+        "symbole": "hL"
+    },
+    {
+        "nom": "Mètre carré",
+        "symbole": "m²"
+    },
+    {
+        "nom": "Kilojoule",
+        "symbole": "kJ"
+    },
+    {
+        "nom": "Kilocalorie",
+        "symbole": "kcal"
+    },
+    {
+        "nom": "Heure",
+        "symbole": "h"
+    },
+    {
+        "nom": "Minute",
+        "symbole": "min"
+    },
+    {
+        "nom": "Seconde",
+        "symbole": "s"
+    }
+]
+
+[
+    { "nom": "Viennoiserie" },
+    { "nom": "Pain" },
+    { "nom": "Pâtisserie" },
+    { "nom": "Sandwichs" },
+    { "nom": "Boissons" },
+    { "nom": "Snacks" },
+    { "nom": "Produits sans gluten" },
+    { "nom": "Confiserie" },
+    { "nom": "Traiteur" },
+    { "nom": "Épicerie" },
+    { "nom": "Produits bio" },
+    { "nom": "Produits régionaux" },
+    { "nom": "Sur commande" },
+    { "nom": "Produits vegan" },
+    { "nom": "Glaces et sorbets" }
+]
+
+[
+    {
+        "nom": "Croissant",
+        "prix": "2000",
+        "idCategorie": "1"
+    },
+    {
+        "nom": "Pain au chocolat",
+        "prix": "2500",
+        "idCategorie": "1"
+    },
+    {
+        "nom": "Chausson aux pommes",
+        "prix": "2200",
+        "idCategorie": "1"
+    },
+    {
+        "nom": "Brioche au sucre",
+        "prix": "3000",
+        "idCategorie": "1"
+    },
+    {
+        "nom": "Baguette tradition",
+        "prix": "1500",
+        "idCategorie": "3"
+    },
+    {
+        "nom": "Pain de campagne",
+        "prix": "2000",
+        "idCategorie": "3"
+    },
+    {
+        "nom": "Pain aux céréales",
+        "prix": "2500",
+        "idCategorie": "3"
+    },
+    {
+        "nom": "Éclair au chocolat",
+        "prix": "3000",
+        "idCategorie": "4"
+    },
+    {
+        "nom": "Tarte aux fraises",
+        "prix": "5000",
+        "idCategorie": "4"
+    },
+    {
+        "nom": "Mille-feuille",
+        "prix": "4500",
+        "idCategorie": "4"
+    },
+    {
+        "nom": "Sandwich jambon-beurre",
+        "prix": "5000",
+        "idCategorie": "5"
+    },
+    {
+        "nom": "Wrap poulet crudités",
+        "prix": "5500",
+        "idCategorie": "5"
+    },
+    {
+        "nom": "Panini fromage",
+        "prix": "4500",
+        "idCategorie": "5"
+    },
+    {
+        "nom": "Café",
+        "prix": "1000",
+        "idCategorie": "6"
+    },
+    {
+        "nom": "Thé glacé",
+        "prix": "1500",
+        "idCategorie": "6"
+    },
+    {
+        "nom": "Jus d'orange pressé",
+        "prix": "2000",
+        "idCategorie": "6"
+    },
+    {
+        "nom": "Chips artisanales",
+        "prix": "2000",
+        "idCategorie": "7"
+    },
+    {
+        "nom": "Barre énergétique",
+        "prix": "3000",
+        "idCategorie": "7"
+    },
+    {
+        "nom": "Pain sans gluten",
+        "prix": "4000",
+        "idCategorie": "8"
+    },
+    {
+        "nom": "Gâteau au chocolat sans gluten",
+        "prix": "5000",
+        "idCategorie": "8"
+    },
+    {
+        "nom": "Bonbon artisanal",
+        "prix": "1000",
+        "idCategorie": "9"
+    },
+    {
+        "nom": "Caramel au beurre salé",
+        "prix": "1500",
+        "idCategorie": "9"
+    },
+    {
+        "nom": "Plateau repas",
+        "prix": "15000",
+        "idCategorie": "10"
+    },
+    {
+        "nom": "Mini-quiches",
+        "prix": "8000",
+        "idCategorie": "10"
+    },
+    {
+        "nom": "Huile d'olive bio",
+        "prix": "8000",
+        "idCategorie": "12"
+    },
+    {
+        "nom": "Miel bio",
+        "prix": "7500",
+        "idCategorie": "12"
+    },
+    {
+        "nom": "Crème glacée vanille",
+        "prix": "5000",
+        "idCategorie": "16"
+    },
+    {
+        "nom": "Sorbet citron",
+        "prix": "4500",
+        "idCategorie": "16"
+    },
+    {
+        "nom": "Glace au chocolat",
+        "prix": "5000",
+        "idCategorie": "16"
+    }
+]

@@ -11,7 +11,7 @@ public interface IServiceProduits {
     public Produits findById(Long id);
     public List<ProduitDto> searchProduit(Double prixMin,Double prixMax,List<Long> idCategorie, String nom);
     public List<ProduitDto> getAllProduit();
-    public void createProduit(Produits produit);
+    public void createProduit(Produits produits);
     public boolean existeByNom(String nom);
     public boolean existeProduitById(Long id);
     public List<Produits> searchByNom(String nom);

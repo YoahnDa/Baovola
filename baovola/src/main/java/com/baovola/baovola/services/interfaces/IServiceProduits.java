@@ -2,6 +2,7 @@ package com.baovola.baovola.services.interfaces;
 
 import java.util.List;
 
+import com.baovola.baovola.dto.ProductionFilleDto;
 import com.baovola.baovola.dto.ProduitDto;
 import com.baovola.baovola.models.Produits;
 
@@ -17,4 +18,5 @@ public interface IServiceProduits {
     public List<Produits> searchByNom(String nom);
     public List<Produits> filtreIdCategorie(List<Long> idCategorie , List<Produits> produits);
     public List<Produits> filtreByPrice(Double prixMax,Double prixMin , List<Produits> produits);
+    public List<ProduitDto> findProduitNotInProd(List<ProductionFilleDto> prodFille);
 }

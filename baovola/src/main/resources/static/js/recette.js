@@ -48,13 +48,7 @@ document.getElementById('addRecipe').addEventListener('click', () => {
 
 // Fonction pour modifier une recette
 function editRecipe(id) {
-    const recipe = recipes.find(r => r.id === id);
-    if (recipe) {
-        document.getElementById('recipeName').value = recipe.name;
-        document.getElementById('ingredientName').value = recipe.ingredient;
-        document.getElementById('ingredientQuantity').value = recipe.quantity;
-        document.getElementById('ingredientUnit').value = recipe.unit;
-    }
+    window.location.href="/ajout-recette?id="+id
 }
 
 // Fonction pour supprimer une recette

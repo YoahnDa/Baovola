@@ -1,5 +1,6 @@
 package com.baovola.baovola.controllers;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,17 +12,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.baovola.baovola.dto.IngredientDto;
+import com.baovola.baovola.dto.ProductionDto;
+import com.baovola.baovola.dto.ProductionFilleDto;
 import com.baovola.baovola.dto.ProduitDto;
+import com.baovola.baovola.dto.RecetteCompositionDto;
+import com.baovola.baovola.dto.RecetteDto;
 import com.baovola.baovola.dto.UniteDto;
 import com.baovola.baovola.helpers.IngredientMapper;
+import com.baovola.baovola.helpers.ProductionMapper;
 import com.baovola.baovola.helpers.ProduitGetMapper;
+import com.baovola.baovola.helpers.RecetteMapper;
+import com.baovola.baovola.models.Status;
 import com.baovola.baovola.services.implementations.ServiceCategory;
 import com.baovola.baovola.services.implementations.ServiceIngredients;
+import com.baovola.baovola.services.implementations.ServiceProduction;
+import com.baovola.baovola.services.implementations.ServiceProductionFille;
 import com.baovola.baovola.services.implementations.ServiceProduit;
+import com.baovola.baovola.services.implementations.ServiceRecette;
+import com.baovola.baovola.services.implementations.ServiceRecetteComposition;
 import com.baovola.baovola.services.implementations.ServiceUnite;
 
 @Controller
 public class BoulangerieController {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Autowired
     private ServiceUnite uniteService;
@@ -35,6 +49,18 @@ public class BoulangerieController {
     private ServiceProduit serviceProduit;
     @Autowired
     private ProduitGetMapper produitMapper;
+    @Autowired
+    private ServiceRecette serviceRecette;
+    @Autowired
+    private ServiceRecetteComposition serviceComposition;
+    @Autowired
+    private RecetteMapper recetteMapper;
+    @Autowired
+    private ServiceProduction production;
+    @Autowired
+    private ServiceProductionFille fille;
+    @Autowired
+    private ProductionMapper mapperProd;
 
     @GetMapping("/dashboard")
     public String accueil(Model model) {
@@ -179,7 +205,8 @@ public class BoulangerieController {
     @GetMapping("/production")
     public String production(Model model) {
         model.addAttribute("body", "productions/production");
-
+        model.addAttribute("productions", fille.getAllProductionFilleDetail());
+        model.addAttribute("ingredient", ingredientService.getAllIngredient().stream().map(ingredientMapper::toDto).toList());
         List<String> cssLinks = Arrays.asList(
                 "/css/production.css");
 
@@ -195,12 +222,31 @@ public class BoulangerieController {
     @GetMapping("/ajout-production")
     public String addproduction(Model model) {
         model.addAttribute("body", "productions/ajout-production");
-
+        model.addAttribute("produits", serviceProduit.getAllProduit());
         List<String> cssLinks = Arrays.asList(
-                "/css/production.css");
+                "/css/production.css","https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css","/css/ajout-production.css");
 
         List<String> jsLinks = Arrays.asList(
-                "/js/production.js");
+                "/js/production.js","/js/ajout-production.js","https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js","https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js","https://code.jquery.com/jquery-3.5.1.min.js");
+
+        model.addAttribute("cssLinks", cssLinks);
+        model.addAttribute("jsLinks", jsLinks);
+
+        return "layout";
+    }
+
+    @GetMapping("/modif-production")
+    public String modifProduction(@RequestParam(required = true) Long id, Model model) {
+        model.addAttribute("body", "productions/modif-productions");
+        ProductionDto liste = mapperProd.toDto(production.findById(id));
+        model.addAttribute("productions", liste);
+        model.addAttribute("etat", Status.values());
+        model.addAttribute("produits", serviceProduit.findProduitNotInProd(liste.getProductionFille()));
+        List<String> cssLinks = Arrays.asList(
+                "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css","/css/modif-production.css");
+
+        List<String> jsLinks = Arrays.asList(
+                "/js/modif-production.js","https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js","https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js","https://code.jquery.com/jquery-3.5.1.min.js");
 
         model.addAttribute("cssLinks", cssLinks);
         model.addAttribute("jsLinks", jsLinks);
@@ -235,10 +281,8 @@ public class BoulangerieController {
 
         List<String> jsLinks = Arrays.asList(
                 "/js/produit.js");
-
         model.addAttribute("cssLinks", cssLinks);
         model.addAttribute("jsLinks", jsLinks);
-        
         return "layout"; 
     }
 
@@ -271,22 +315,24 @@ public class BoulangerieController {
 
         model.addAttribute("cssLinks", cssLinks);
         model.addAttribute("jsLinks", jsLinks);
-        
+        model.addAttribute("recettes", serviceRecette.getAllRecette());
         return "layout"; 
     }
 
     @GetMapping("/ajout-recette")
-    public String addrecette(Model model) {
+    public String addrecette(@RequestParam (required = true) Long id,Model model) {
         model.addAttribute("body", "recettes/ajout-recette");
         List<String> cssLinks = Arrays.asList(
-                "/css/recette.css");
+                "/css/recette.css","/css/liste-recette.css");
 
         List<String> jsLinks = Arrays.asList(
-                "/js/recette.js");
-
+                "/js/liste-recette.js");
+        List<RecetteCompositionDto> recette = serviceComposition.getAllRecetteComposition(id);
         model.addAttribute("cssLinks", cssLinks);
         model.addAttribute("jsLinks", jsLinks);
-        
+        model.addAttribute("composition", recette);
+        model.addAttribute("recettes", recetteMapper.toDto(serviceRecette.findById(id)));
+        model.addAttribute("ingredients", ingredientService.ingredientNotInRecette(recette));
         return "layout"; 
     }
 

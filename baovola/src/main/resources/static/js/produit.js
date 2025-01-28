@@ -27,8 +27,8 @@ function searchByAjax(formulaire){
          }
     }
 
-    const prixMin = formulaire.getElementById("prixMin").value;
-    const prixMax = formulaire.getElementById("prixMax").value;
+    const prixMin = formulaire.querySelector("#minPrice").value;
+    const prixMax = formulaire.querySelector("#maxPrice").value;
 
     if(prixMin && isNaN(prixMin)){
         alert("Le prix minimum doit être valide.");

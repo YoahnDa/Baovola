@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.baovola.baovola.dto.ProductionFilleDto;
 import com.baovola.baovola.dto.ProduitDto;
 import com.baovola.baovola.helpers.ProduitGetMapper;
 import com.baovola.baovola.models.ProduitMois;
@@ -87,6 +88,17 @@ public class ServiceProduit implements IServiceProduits {
     @Override
     public List<Produits> searchByNom(String nom) {
        return produitRepository.findByNomContainingIgnoreCase(nom); 
+    }
+
+    @Override
+    public List<ProduitDto> findProduitNotInProd(List<ProductionFilleDto> prodFille) {
+        List<ProduitDto> all = getAllProduit();
+        List<Long> listeId = prodFille.stream()
+                                .map(rc -> rc.getProduit().getId())
+                                .toList();
+        return all.stream()
+                .filter(produit -> !listeId.contains(produit.getId()))
+                .toList();
     }
     
 }

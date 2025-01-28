@@ -14,42 +14,63 @@
 <body>
     <div th:fragment="content">
         <main class="container mt-5">
-            <!-- Formulaire d'ajout/édition d'une recette -->
-<div class="card mb-4">
-    <div class="card-header bg-primary text-white">
-        <h5>Ajouter / Modifier Recette</h5>
-    </div>
-    <div class="card-body">
-        <form id="recipeForm">
-            <div class="form-group">
-                <label for="recipeName">Nom de la Recette</label>
-                <input type="text" class="form-control" id="recipeName" placeholder="Nom de la recette">
+            <h1>Liste des Ingrédients</h1>
+
+            <div class="button-container">
+                <button onclick="openModal('add')">Ajouter un ingrédient</button>
             </div>
-            <div class="form-group">
-                <label for="ingredientName">Ingrédient</label>
-                <input type="text" class="form-control" id="ingredientName"
-                    placeholder="Nom de l'ingrédient">
+            <h3 id="not_found" th:if="${composition.isEmpty() || composition == null}">Pas encore de composition</h3>
+            <table id="ingredientTable" th:if="${!composition.isEmpty() && composition != null}">
+                <thead>
+                    <tr>
+                        <th>Ingrédient</th>
+                        <th>Quantité</th>
+                        <th>Unité</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="compositions : ${composition}" th:data-id="${compositions.id}"  th:data-ingredient="${compositions.ingredient.id}">
+                        <td th:text="${compositions.ingredient.nom}"></td>
+                        <td th:text="${compositions.quantite}"></td>
+                        <td th:text="${compositions.ingredient.unite.nom}"></td>
+                        <td>
+                            <button class="edit" onclick="openModal('edit', this)">Modifier</button>
+                            <button class="delete" th:onclick="'deleteIngredient(this,' + ${compositions.id} + ')'">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <div class="modal-overlay" id="modalOverlay"></div>
+        
+            <div class="modal" id="ingredientModal">
+                <form id="ingredientForm">
+                    <input type="text" th:value="${recettes.id}" name="idRecette" style="display: none;" readonly>
+                    <label for="idIngredient">Ingrédient :</label>
+                    <select name="idIngredient" id="idIngredient" required>
+                        <option th:each="ingredient : ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.nom}" th:id="'ingredient-'+${ingredient.id}"></option>
+                    </select>
+                    <label for="quantity">Quantité :</label>
+                    <input type="number" id="quantity" name="quantite" placeholder="Quantité" min="0.1" step="0.1" required>
+                    <button type="submit">Enregistrer</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="ingredientQuantity">Quantité</label>
-                <input type="number" class="form-control" id="ingredientQuantity"
-                    placeholder="Quantité de l'ingrédient">
-            </div>
-            <div class="form-group">
-                <label for="ingredientUnit">Unité</label>
-                <input type="text" class="form-control" id="ingredientUnit"
-                    placeholder="Unité de l'ingrédient (ex: kg, litre)">
-            </div>
-            <button type="button" class="btn btn-success" id="addRecipe">Ajouter Recette</button>
-            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
-        </form>
-    </div>
-</div> 
+            <div class="modal" id="ingredientUpdate">
+                <form id="ingredientFormUpdate">
+                    <input type="text" th:value="${recettes.id}" name="idRecette" style="display: none;" readonly>
+                    <label for="ingredientName">Ingrédient :</label>
+                    <input type="text" id="ingredientName" readonly>
+                    <label for="quantityUpdate">Quantité :</label>
+                    <input type="number" id="quantityUpdate" name="quantite" min="0.1" step="0.1" placeholder="Quantité" required>
+                    <button type="submit">Modifier</button>
+                </form>
+            </div>          
         </main>
     </div>
 
     <th:block th:each="jsLink : ${jsLinks}">
-        <script th:src="@{${jsLink}}"></script>
+        <script th:src="@{${jsLink}}" defer></script>
     </th:block>
 
 </body>

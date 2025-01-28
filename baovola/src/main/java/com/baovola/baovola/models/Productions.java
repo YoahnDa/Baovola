@@ -1,6 +1,8 @@
 package com.baovola.baovola.models;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.validation.constraints.*;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,12 +15,9 @@ public class Productions implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false) 
-    private LocalDateTime dateProduction;
-    @Column(nullable = false) 
-    private double quantite = 0;
-    @ManyToOne
-    @JoinColumn(name = "id_produit") 
-    private Produits produit;
+    private LocalDateTime dateProduction = LocalDateTime.now();
     @Enumerated(EnumType.STRING)
     private Status etat = Status.WAIT;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productions", orphanRemoval = true)
+    private List<ProductionFille> productionFille;
 }

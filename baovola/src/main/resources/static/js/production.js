@@ -49,12 +49,7 @@ function refreshTable() {
 
 // Modifier un ingrédient
 function editIngredient(index) {
-    const ingredient = ingredients[index];
-    document.getElementById('ingredientName').value = ingredient.name;
-    document.getElementById('quantity').value = ingredient.quantity;
-    document.getElementById('unit').value = ingredient.unit;
-
-    ingredients.splice(index, 1);
+    window.location.href = "/modif-production?id="+index
 }
 
 // Supprimer un ingrédient

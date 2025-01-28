@@ -13,11 +13,17 @@
 <body>
     <div th:fragment="content">
         <main class="container mt-5">
+            <header class="bg-dark text-white text-center py-3">
+                <h1>Gestion des ingredients </h1>
+                <a href="/ajout-ingredient" class="btn btn-secondary" style="text-decoration: none;">Ajouter produit</a>
+            </header>
+            <br>
             <!-- Recherche multicritère -->
             <div class="card mb-4">
                 <div class="card-header bg-info text-white">
                     <h5>Recherche Multicritère</h5>
                 </div>
+                <br>
                 <div class="card-body">
                     <form id="searchForm" method="GET">
                         <div class="form-row">
@@ -45,7 +51,6 @@
                 <div class="card-header bg-dark text-white">
                     <h5>Liste des Ingrédients</h5>
                 </div>
-                <div class="card-body">
                     <h3 th:if="${ingredient.isEmpty() || ingredient == null}">Pas encore d'ingredients</h3>
                     <table class="table table-striped table-hover" id="ingredientsTable" th:if="${!(ingredient.isEmpty() || ingredient == null)}">
                         <thead class="thead-dark">
@@ -69,7 +74,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </main>
     </div>
 

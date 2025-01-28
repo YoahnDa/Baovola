@@ -1,0 +1,109 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Cartes */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-warning {
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-warning:hover {
+    background-color: #ffc107;
+    transform: scale(1.1);
+}
+
+/* Animations pour les lignes de la table */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* Animation sur ajout */
+#productionFilleList tr.new-row {
+    animation: fadeIn 0.5s ease-in-out;
+    background-color: #e0ffe0;
+}
+
+#productionFilleList tr.removing-row {
+    animation: fadeOut 0.5s ease-in-out;
+    background-color: #ffe0e0;
+}
+
+/* Modal styles */
+.modal-content {
+    border-radius: 12px;
+}
+
+.modal-header {
+    background-color: #343a40;
+    color: #fff;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.modal-footer {
+    background-color: #f1f1f1;
+}
+
+/* Table */
+.table {
+    border: 1px solid #dee2e6;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* Highlight row when hover */
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Form inputs */
+.form-control:focus {
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.8);
+    border-color: #80bdff;
+}
+
+/* Messages de confirmation ou d'alerte */
+.alert {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-out;
+}

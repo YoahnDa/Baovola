@@ -13,28 +13,71 @@
 
 <body>
     <div th:fragment="content">
-        <main class="container mt-5">
-            <!-- Formulaire de gestion de la production -->
-            <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5>Ajouter ou Modifier la Production</h5>
-                </div>
-                <div class="card-body">
-                    <form id="productionForm">
-                        <div class="form-group">
-                            <label for="productName">Nom du Produit</label>
-                            <input type="text" class="form-control" id="productName" placeholder="Nom du produit">
+            <div class="container">
+                <header>
+                    <h1>Ajout production</h1>
+                </header>
+        
+                <!-- Formulaire -->
+                <form id="productionForm">
+                    <div class="form-group">
+                        <label for="productSelect">Produit</label>
+                        <select class="form-control" id="productSelect">
+                            <option th:each="produit : ${produits}" th:value="${produit.id}" th:text="${produit.nom}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityInput">Quantité</label>
+                        <input type="number" class="form-control" id="quantityInput" placeholder="Quantité">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+        
+                <!-- Tableau -->
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productionTableBody">
+                        <!-- Les lignes seront ajoutées ici dynamiquement -->
+                    </tbody>
+                </table>
+        
+                <!-- Bouton pour envoyer toutes les productions filles -->
+                <button class="btn btn-success" id="sendProductionsBtn">Envoyer Productions</button>
+            </div>
+        
+            <!-- Modal pour modification -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Modifier Production</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="quantity">Quantité de production</label>
-                            <input type="number" class="form-control" id="quantity" placeholder="Quantité de production">
+                        <div class="modal-body">
+                            <form id="editForm">
+                                <input type="number" id="idProduit" style="display: none;">
+                                <div class="form-group">
+                                    <label for="editProductSelect">Produit</label>
+                                    <input type="text" class="form-control" id="editProductSelect" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editQuantityInput">Quantité</label>
+                                    <input type="number" class="form-control" id="editQuantityInput" placeholder="Quantité" min="1" step="1" value="1" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </form>
                         </div>
-                        <button type="button" class="btn btn-success" id="addProduction">Ajouter</button>
-                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </main>
     </div>
 
     <th:block th:each="jsLink : ${jsLinks}">

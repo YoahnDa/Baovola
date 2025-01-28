@@ -15,7 +15,7 @@ public class RecetteComposition implements Serializable {
     private Long id;
     @Column(nullable=false)
     private double quantite = 0;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_recette") 
     private Recettes recettes;
     @ManyToOne

@@ -9,6 +9,7 @@ import com.baovola.baovola.repository.IngredientRepository;
 import org.springframework.stereotype.Service;
 import com.baovola.baovola.services.interfaces.IServiceIngredients;
 import com.baovola.baovola.dto.IngredientDto;
+import com.baovola.baovola.dto.RecetteCompositionDto;
 import com.baovola.baovola.helpers.IngredientMapper;
 import com.baovola.baovola.models.MatierePremiere;
 
@@ -56,5 +57,20 @@ public class ServiceIngredients implements IServiceIngredients {
 
     public void createIngredients(MatierePremiere ingredient) {
         ingredientRepository.save(ingredient);
+    }
+    @Override
+    public boolean existeById(Long id) {
+        return ingredientRepository.existsById(id);
+    }
+    @Override
+    public List<IngredientDto> ingredientNotInRecette(List<RecetteCompositionDto> liste) {
+        List<MatierePremiere> listeIngredient = ingredientRepository.findAll();
+        List<Long> listeId = liste.stream()
+                                    .map(rc -> rc.getIngredient().getId())
+                                    .toList();
+        return listeIngredient.stream()
+                                .filter(ingredient -> !listeId.contains(ingredient.getId()))
+                                .map(ingredientMapper::toDto)
+                                .toList();    
     }
 }

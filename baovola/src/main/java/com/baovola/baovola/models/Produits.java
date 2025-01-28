@@ -22,7 +22,7 @@ public class Produits implements Serializable {
     @JoinColumn(name = "id_categorie")
     private Categorie categorie;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit", orphanRemoval = true)
-    private List<Productions> productions;
+    private List<ProductionFille> productions;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit", orphanRemoval = true)
     private List<CommandeFille> commande;
     @OneToOne(mappedBy = "produit", cascade = CascadeType.ALL)

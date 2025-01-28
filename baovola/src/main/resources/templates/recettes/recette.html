@@ -17,7 +17,6 @@
         <header class="bg-dark text-white text-center py-3">
             <h1>Gestion des Recettes</h1>
         </header>
-
         <main class="container mt-5">
             
 
@@ -26,23 +25,23 @@
                 <div class="card-header bg-dark text-white">
                     <h5>Liste des Recettes</h5>
                 </div>
-                <div class="card-body">
                     <table class="table table-striped" id="recipeTable">
                         <thead class="thead-dark">
                             <tr>
-                                <th>ID</th>
-                                <th>Nom de la Recette</th>
-                                <th>Ingrédient</th>
+                                <th>Produit</th>
                                 <th>Quantité</th>
-                                <th>Unité</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Les recettes seront insérées ici dynamiquement -->
+                            <h3 th:if="${recettes.isEmpty() || recettes == null}">Pas encore de recettes</h3>
+                            <tr th:each="recette : ${recettes}" th:id="'recette-' + ${recette.id}" th:if="${!recettes.isEmpty() && recettes != null}">
+                                <td th:text="${recette.produit.nom}"></td>
+                                <td>1</td>
+                                <td><button class="btn btn-warning" th:onclick="'editRecipe(' + ${recette.id} + ')'">Modifier</button></td>
+                            </tr>
                         </tbody>
                     </table>
-                </div>
             </div>
         </main>
 

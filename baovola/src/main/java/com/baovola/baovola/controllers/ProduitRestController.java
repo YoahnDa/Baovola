@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baovola.baovola.dto.IngredientDto;
 import com.baovola.baovola.dto.ProduitDto;
 import com.baovola.baovola.models.Produits;
+import com.baovola.baovola.models.Recettes;
 import com.baovola.baovola.services.implementations.ServiceCategory;
 import com.baovola.baovola.services.implementations.ServiceProduit;
+import com.baovola.baovola.services.implementations.ServiceRecette;
 
 import ch.qos.logback.core.model.Model;
 
@@ -32,6 +34,8 @@ public class ProduitRestController {
     private ServiceProduit serviceProduit;
     @Autowired
     private ServiceCategory serviceCategory;
+    @Autowired
+    private ServiceRecette serviceRecette;
 
     @ResponseBody
     @GetMapping
@@ -65,7 +69,9 @@ public class ProduitRestController {
         product.setNom(nom);
         product.setPrixUnitaire(prix);
         product.setCategorie(serviceCategory.findById(idCategorie));
-        serviceProduit.createProduit(product);
+        Recettes recettes = new Recettes();
+        recettes.setProduit(product);
+        serviceRecette.createRecettes(recettes);
         return ResponseEntity.status(HttpStatus.CREATED).body("Produit ajouté avec succès.");
     }
 
@@ -96,7 +102,9 @@ public class ProduitRestController {
             product.setNom(nom);
             product.setPrixUnitaire(prix);
             product.setCategorie(serviceCategory.findById(idCategorie));
-            serviceProduit.createProduit(product);
+            Recettes recettes = new Recettes();
+            recettes.setProduit(product);
+            serviceRecette.createRecettes(recettes);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body("Produit ajouté avec succès.");
     }

@@ -64,6 +64,26 @@ public class IngredientRestController {
     }
 
     @ResponseBody
+    @PostMapping("/ajout-liste-ingredient")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<String> createIngredient(@RequestBody List<Map<String, Object>> ingredientData) {
+            for(Map<String,Object> ingredient : ingredientData){
+                Long idUnite = Long.valueOf((String) ingredient.get("unit"));
+            String nom = (String) ingredient.get("nom");
+            if (ingredientService.existeByNom(nom)) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("L'ingrédient avec le nom '" + nom + "' existe déjà.");
+            }
+            MatierePremiere ingredients = new MatierePremiere();
+            ingredients.setNom(nom);
+            ingredients.setUnite(uniteService.findById(idUnite));
+            ingredientService.createIngredients(ingredients);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body("Ingrédient ajouté avec succès.");
+    }
+
+
+    @ResponseBody
     @PostMapping("/modification")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> modifIngredient(@RequestBody Map<String, Object> ingredientData) {

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Boulangerie</title>
+
+    <th:block th:each="cssLink : ${cssLinks}">
+        <link rel="stylesheet" th:href="@{${cssLink}}" />
+    </th:block>
+
+</head>
+
+<body>
+    <div th:fragment="content">
+            <div class="container">
+                <header>
+                    <h1>Modification production</h1>
+                </header>
+                <main class="container mt-5">
+                    <!-- Détails de la production -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-white">
+                            <h5>Détails de la Production</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="editProductionForm">
+                                <input type="text" name="idProduction" th:value="${productions.id}" style="display: none;" readonly>
+                                <div class="mb-3">
+                                    <label for="productionDate" class="form-label">Date de Production</label>
+                                    <input type="datetime-local" th:value="${#temporals.format(productions.dateProduction, 'yyyy-MM-dd''T''HH:mm')}" class="form-control" id="productionDate" name="dateProd" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Statut</label>
+                                    <select class="form-control" id="status" name="etat" required>
+                                        <div th:each="stat : ${etat}">
+                                            <option th:value="${stat}" th:text="${stat}" th:selected="${stat.name() == productions.etat?.name()}"></option>
+                                        </div>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary" id="updateProductionBtn">Modifier Production</button>
+                                <button type="button" class="btn btn-info" th:onclick="'deleteProduction(this,' + ${productions.id} + ')'">Supprimer production</button>
+                            </form>
+                        </div>
+                    </div>
+            
+                    <!-- Liste des productions filles -->
+                    <div class="card">
+                        <div class="card-header bg-dark text-white">
+                            <h5>Productions Filles</h5>
+                        </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nom du Produit</th>
+                                        <th>Quantité</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productionFilleList">
+                                    <tr th:each="fille : ${productions.productionFille}" th:data-id="${fille.id}" th:id="'fille-'+${fille.id}">
+                                        <td th:text="${fille.produit.nom}"></td>
+                                        <td th:text="${fille.quantite}"></td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm" th:onclick="'editProductionFille(this,' + ${fille.quantite} + ','+${fille.id}+')'">Modifier</button>
+                                            <button class="btn btn-danger btn-sm" th:onclick="'deleteProductionFille(this,'+${fille.id}+')'">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn btn-primary mt-3" style="width: 25%; margin:0 5% 2% 2%;" id="addProductBtn">Ajouter un Produit</button>
+                    </div>
+                </main>
+            
+                <!-- Modal pour ajouter un produit -->
+                <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Ajouter un Produit</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addProductForm">
+                                    <input type="text" name="idProductions" th:value="${productions.id}" style="display: none;" readonly>
+                                    <div class="mb-3">
+                                        <label for="newProduct" class="form-label">Nom du Produit</label>
+                                        <select name="product" class="form-control" id="newProduct">
+                                            <option th:each="produit : ${produits}" th:value="${produit.id}" th:text="${produit.nom}" th:id="'produit-'+${produit.id}" required></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newQuantity" class="form-label">Quantité</label>
+                                        <input name="quantite" min="0.1" step="0.1" type="number" class="form-control" id="newQuantity" required>
+                                    </div>
+                                     <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Modal pour modifier un produit fille -->
+                <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modifier un Produit</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editProductForm">
+                                    <input type="text" name="idFille" style="display:none" id="editProductFille" readonly>
+                                    <div class="mb-3">
+                                        <label for="nameProd" class="form-label">Produit</label>
+                                        <input type="text" class="form-control" id="nameProd" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editQuantity" class="form-label">Quantité</label>
+                                        <input name="quantite" type="number" class="form-control" id="editQuantity">
+                                    </div>
+                                     <button type="submit" class="btn btn-primary" id="updateProductBtn">Modifier</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <th:block th:each="jsLink : ${jsLinks}">
+        <script th:src="@{${jsLink}}"></script>
+    </th:block>
+
+</body>
+
+</html>

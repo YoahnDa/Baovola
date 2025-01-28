@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring" , uses = UniteMapper.class)
 public interface IngredientMapper {
     @Mapping(source = "unite", target = "unite")
+    @Mapping(target ="recettes" , ignore = true )
     MatierePremiere toEntity(IngredientDto dto);
     @Mapping(source = "unite", target = "unite")
     IngredientDto toDto(MatierePremiere ingredient);

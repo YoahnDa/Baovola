@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="sidebar">
+    <div class="sidebar" style="overflow-y: scroll;scrollbar-width:none;">
         <div class="logo">
             <img th:src="@{/img/logo-boulangerie.jpeg}" alt="Logo">
             <h1>Boulangerie</h1>
@@ -43,18 +43,20 @@
         <div class="menu-item">
             <a th:href="@{/vente}"><i class="fas fa-shopping-cart"></i> Ventes</a>
         </div>
+        <div class="menu-item">
+            <a th:href="@{/client}"><i class="fas fa-shopping-cart"></i> Client</a>
+        </div>
 
         <h3 class="menu-title">Stocks</h3>
         <div class="menu-item">
             <a th:href="@{/approvisionnement}"><i class="fas fa-box"></i> Stocks</a>
             <a th:href="@{/fournisseur}"><i class="fas fa-truck"></i> Fournisseur</a>
         </div>
-
         <h3 class="menu-title">Autres</h3>
         <div class="menu-item">
             <a th:href="@{/deconnexion}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
         </div>
-
+        <br>
     </div>
 
     <div class="main-content">

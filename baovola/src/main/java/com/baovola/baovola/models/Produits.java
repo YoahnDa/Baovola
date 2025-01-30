@@ -16,8 +16,6 @@ public class Produits implements Serializable {
     private Long id;
     @Column(nullable = false) 
     private String nom;
-    @Column(nullable = false) 
-    private double prixUnitaire = 0;
     @ManyToOne
     @JoinColumn(name = "id_categorie")
     private Categorie categorie;
@@ -31,4 +29,6 @@ public class Produits implements Serializable {
     private List<SupplementPossible> supplements;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit", orphanRemoval = true) 
     private List<ProduitMois> preference;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produits", orphanRemoval = true)
+    private List<HistoriquePrix> prixUnitaire;
 }

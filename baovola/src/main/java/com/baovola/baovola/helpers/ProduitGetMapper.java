@@ -6,7 +6,7 @@ import org.mapstruct.Mapping;
 import com.baovola.baovola.dto.ProduitDto;
 import com.baovola.baovola.models.Produits;
 
-@Mapper(componentModel = "spring" , uses = CategorieMapper.class)
+@Mapper(componentModel = "spring" , uses = {CategorieMapper.class,HistoriquePrixMapper.class})
 public interface ProduitGetMapper {
     @Mapping(target = "productions" , ignore = true)
     @Mapping(target = "commande" , ignore = true)

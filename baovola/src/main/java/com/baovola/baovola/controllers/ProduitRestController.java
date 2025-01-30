@@ -1,5 +1,7 @@
 package com.baovola.baovola.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baovola.baovola.dto.IngredientDto;
 import com.baovola.baovola.dto.ProduitDto;
+import com.baovola.baovola.models.HistoriquePrix;
 import com.baovola.baovola.models.Produits;
 import com.baovola.baovola.models.Recettes;
 import com.baovola.baovola.services.implementations.ServiceCategory;
@@ -65,9 +68,11 @@ public class ProduitRestController {
                 .body("Problème dans les données");
         }
 
+        HistoriquePrix historique = new HistoriquePrix();
+        historique.setPrix(prix);
         Produits product = new Produits();
         product.setNom(nom);
-        product.setPrixUnitaire(prix);
+        product.setPrixUnitaire(Arrays.asList(historique));
         product.setCategorie(serviceCategory.findById(idCategorie));
         Recettes recettes = new Recettes();
         recettes.setProduit(product);
@@ -97,10 +102,11 @@ public class ProduitRestController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Problème dans les données");
             }
-
+            HistoriquePrix historique = new HistoriquePrix();
+            historique.setPrix(prix);
             Produits product = new Produits();
             product.setNom(nom);
-            product.setPrixUnitaire(prix);
+            product.setPrixUnitaire(Arrays.asList(historique));
             product.setCategorie(serviceCategory.findById(idCategorie));
             Recettes recettes = new Recettes();
             recettes.setProduit(product);
